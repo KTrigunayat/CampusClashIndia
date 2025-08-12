@@ -13,7 +13,7 @@ const Navigation = () => {
   const isMobile = useIsMobile();
   
   const handleScroll = useCallback(() => {
-    const sections = ['hero', 'events', 'timeline', 'gallery', 'artists', 'faq'];
+    const sections = ['hero', 'tournament', 'stages', 'colleges', 'timeline', 'gallery', 'rules', 'registration', 'faq'];
     const scrollPosition = window.scrollY;
 
     setIsScrolled(scrollPosition > 50);
@@ -86,7 +86,7 @@ const Navigation = () => {
             className="text-carnival-cream text-xl sm:text-2xl font-bold"
             whileHover={{ scale: 1.05 }}
           >
-            Vizphoria
+            Campus Clash India
           </motion.span>
           
           <Button
@@ -105,10 +105,13 @@ const Navigation = () => {
           <div className="hidden sm:flex space-x-6 md:space-x-8">
             {[
               { id: 'hero', label: 'Home' },
-              { id: 'events', label: 'Events' },
+              { id: 'tournament', label: 'Tournament' },
+              { id: 'stages', label: 'Stages' },
+              { id: 'colleges', label: 'Colleges' },
               { id: 'timeline', label: 'Timeline' },
               { id: 'gallery', label: 'Gallery' },
-              { id: 'artists', label: 'Artists' },
+              { id: 'rules', label: 'Rules' },
+              { id: 'registration', label: 'Register' },
               { id: 'faq', label: 'FAQ' },
             ].map(({ id, label }) => (
               <motion.button
@@ -147,10 +150,13 @@ const Navigation = () => {
           <div className="flex flex-col space-y-2 px-4 pt-2">
             {[
               { id: 'hero', label: 'Home' },
-              { id: 'events', label: 'Events' },
+              { id: 'tournament', label: 'Tournament' },
+              { id: 'stages', label: 'Stages' },
+              { id: 'colleges', label: 'Colleges' },
               { id: 'timeline', label: 'Timeline' },
               { id: 'gallery', label: 'Gallery' },
-              { id: 'artists', label: 'Artists' },
+              { id: 'rules', label: 'Rules' },
+              { id: 'registration', label: 'Register' },
               { id: 'faq', label: 'FAQ' },
             ].map(({ id, label }) => (
               <motion.button

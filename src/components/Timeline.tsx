@@ -4,66 +4,38 @@ import { Calendar, Clock, Sun, Moon, MapPin } from 'lucide-react';
 const Timeline = () => {
   const events = [
     {
-      date: "Day 1 - 20th Feb",
-      time: "9:00 AM",
-      title: "Opening Ceremony",
-      venue: "Main Stage",
+      date: "January 2025",
+      time: "All Month",
+      title: "Registrations Open",
+      venue: "Online",
       icon: <Sun className="w-6 h-6" />,
     },
     {
-      date: "Day 1 - 20th Feb",
-      time: "10:00 AM",
-      title: "Sports & Cultural Begins",
-      venue: "Respective Venues",
+      date: "February 2025",
+      time: "Weekends",
+      title: "Online Qualifiers Begin",
+      venue: "Nationwide",
       icon: <Sun className="w-6 h-6" />,
     },
     {
-      date: "Day 1 - 20th Feb",
-      time: "5:00 PM",
-      title: "Jamming Session",
-      venue: "Main Stage",
+      date: "March 2025",
+      time: "Rolling Schedule",
+      title: "Offline Campus Rounds",
+      venue: "35 Partner Colleges",
       icon: <Moon className="w-6 h-6" />,
     },
     {
-      date: "Day 2 - 21st Feb",
-      time: "10:00 AM",
-      title: "Event Resume",
-      venue: "Respective Venues",
+      date: "April 2025",
+      time: "TBD",
+      title: "Regional Playoffs",
+      venue: "Online Broadcast",
       icon: <Sun className="w-6 h-6" />,
     },
     {
-      date: "Day 2 - 21st Feb",
-      time: "5:00 PM",
-      title: "Standup Comedy Show",
-      venue: "Main Stage",
-      icon: <Moon className="w-6 h-6" />,
-    },
-    {
-      date: "Day 3 - 22nd Feb",
-      time: "10:00 AM",
-      title: "Finale",
-      venue: "Main Stage",
-      icon: <Sun className="w-6 h-6" />,
-    },
-    {
-      date: "Day 3 - 22nd Feb",
-      time: "3:00 PM",
-      title: "Award Ceremony",
-      venue: "Main Stage",
-      icon: <Sun className="w-6 h-6" />,
-    },
-    {
-      date: "Day 3 - 22nd Feb",
-      time: "5:00 PM",
-      title: "DJ Night",
-      venue: "Main Stage",
-      icon: <Moon className="w-6 h-6" />,
-    },
-    {
-      date: "Day 3 - 22nd Feb",
-      time: "8:00 PM",
-      title: "Closing Ceremony",
-      venue: "Main Stage",
+      date: "May 2025",
+      time: "TBD",
+      title: "Grand Finale LAN",
+      venue: "IIT Kharagpur",
       icon: <Moon className="w-6 h-6" />,
     },
   ];
@@ -72,7 +44,7 @@ const Timeline = () => {
     <section className="py-20 bg-gradient-to-b from-carnival-cream to-white">
       <div className="container">
         <h2 className="text-4xl font-bold text-center mb-12 gradient-text">
-          Event Timeline
+          Tournament Timeline
         </h2>
         
         <div className="relative max-w-4xl mx-auto">

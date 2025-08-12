@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Music, Trophy, Theater, Camera, Palette, Book, Shirt, Calendar } from 'lucide-react';
+import { Trophy, Target, Gamepad, Map, Users, Award, Calendar } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
 import {
@@ -14,193 +14,88 @@ import {
 
   const categories = [
     {
-      title: "Sports Events",
-      description: "Showcase your athletic prowess and team spirit in our competitive sports events",
+      title: "Online Qualifiers",
+      description: "Nationwide online BGMI qualifiers with anti-cheat protection",
       events: [
         { 
-          name: "Cricket Tournament", 
-          description: "Experience the thrill of cricket with teams competing for glory", 
-          registrationFee: 999,
-          prizeMoney: "Upto ₹7,500 + Trophies and Medals"
+          name: "Open Qualifiers", 
+          description: "15,000 team slots available for nationwide competition", 
+          registrationFee: "FREE",
+          prizeMoney: "Advancement to Offline Rounds"
         },
         { 
-          name: "Football Championship", 
-          description: "Show your football skills in this exciting tournament", 
-          registrationFee: 799,
-          prizeMoney: "Upto ₹7,500 + Trophies and Medals"
+          name: "Anti-Cheat Enabled", 
+          description: "Advanced detection systems ensure fair play", 
+          registrationFee: "Included",
+          prizeMoney: "Fair Competition Guaranteed"
+        }
+      ],
+      icon: <Gamepad className="w-8 h-8" />,
+      color: "bg-carnival-red/10",
+      id: "online"
+    },
+    {
+      title: "Offline Campus Rounds",
+      description: "On-ground qualifiers across 35 partner colleges",
+      events: [
+        { 
+          name: "Partner College LAN", 
+          description: "LAN setup with on-ground administrators", 
+          registrationFee: "Qualified Teams",
+          prizeMoney: "City-wise Winners"
+        },
+        { 
+          name: "Spectator Area", 
+          description: "Live viewing experience for college students", 
+          registrationFee: "Free Entry",
+          prizeMoney: "Campus Champions"
+        }
+      ],
+      icon: <Users className="w-8 h-8" />,
+      color: "bg-carnival-yellow/10",
+      id: "offline"
+    },
+    {
+      title: "Regional Playoffs",
+      description: "Top performers from online and offline rounds compete",
+      events: [
+        { 
+          name: "Broadcast Matches", 
+          description: "Professional streaming with commentary", 
+          registrationFee: "Qualified Teams",
+          prizeMoney: "Regional Champions"
+        },
+        { 
+          name: "Pro Observers", 
+          description: "Expert oversight and fair play monitoring", 
+          registrationFee: "Included",
+          prizeMoney: "Advancement to LAN Finals"
+        }
+      ],
+      icon: <Target className="w-8 h-8" />,
+      color: "bg-carnival-brown/10",
+      id: "regional"
+    },
+    {
+      title: "Grand Finale LAN",
+      description: "Top 16 teams battle at IIT Kharagpur for the championship",
+      events: [
+        { 
+          name: "Main Stage Finals", 
+          description: "Professional esports arena setup", 
+          registrationFee: "Top 16 Teams",
+          prizeMoney: "Championship Trophy + Prizes"
+        },
+        { 
+          name: "Live Audience", 
+          description: "Spectator experience with live commentary", 
+          registrationFee: "Free Entry",
+          prizeMoney: "Ultimate Glory"
         }
       ],
       icon: <Trophy className="w-8 h-8" />,
-      color: "bg-carnival-red/10",
-      id: "sports"
-    },
-    {
-      title: "Fashion Events",
-      description: "Express your style and creativity through fashion",
-      events: [
-        { 
-          name: "A Masquerade Affair", 
-          description: "A grand fashion showcase with masks and mystery", 
-          registrationFee: 799,
-          prizeMoney: "Upto ₹15,000"
-        }
-      ],
-      icon: <Shirt className="w-8 h-8" />,
       color: "bg-carnival-yellow/10",
-      id: "fashion"
-    },
-    {
-      title: "Dance Events",
-      description: "Move to the rhythm and showcase your dance talents",
-      events: [
-        { 
-          name: "Reel Rhythm", 
-          description: "Create viral-worthy dance reels", 
-          registrationFee: 799,
-          prizeMoney: "Upto ₹15,000"
-        },
-        { 
-          name: "Nukkad Natak", 
-          description: "Street-style dance performances", 
-          registrationFee: 799,
-          prizeMoney: "Upto ₹15,000"
-        },
-        { 
-          name: "The Prop Challenge", 
-          description: "Dance with creative props", 
-          registrationFee: 399,
-          prizeMoney: "Upto ₹8,000"
-        },
-        { 
-          name: "Legends in Motion", 
-          description: "Solo dance competition", 
-          registrationFee: 199,
-          prizeMoney: "Upto ₹4,000"
-        }
-      ],
-      icon: <Theater className="w-8 h-8" />,
-      color: "bg-carnival-brown/10",
-      id: "dance"
-    },
-    {
-      title: "Music Events",
-      description: "Let your musical talent shine through various performances",
-      events: [
-        { 
-          name: "Musical Theatre", 
-          description: "Theatrical music performances", 
-          registrationFee: 799,
-          prizeMoney: "Upto ₹15,000"
-        },
-        { 
-          name: "Folk Mela", 
-          description: "Traditional folk music showcase", 
-          registrationFee: 399,
-          prizeMoney: "Upto ₹8,000"
-        },
-        { 
-          name: "Symphonic Souls", 
-          description: "Classical music competition", 
-          registrationFee: 199,
-          prizeMoney: "Upto ₹4,000"
-        },
-        { 
-          name: "Jugalbandi Wars", 
-          description: "Musical face-offs between artists", 
-          registrationFee: 199,
-          prizeMoney: "Upto ₹4,000"
-        },
-        { 
-          name: "Vocal Vibes", 
-          description: "Solo singing competition", 
-          registrationFee: 99,
-          prizeMoney: "Upto ₹2,000"
-        }
-      ],
-      icon: <Music className="w-8 h-8" />,
-      color: "bg-carnival-yellow/10",
-      id: "music"
-    },
-    {
-      title: "Media Events",
-      description: "Capture moments and tell stories through various media forms",
-      events: [
-        { 
-          name: "Visionary Voices", 
-          description: "Short film making competition", 
-          registrationFee: 399,
-          prizeMoney: "Upto ₹8,000"
-        },
-        { 
-          name: "Quick Cuts", 
-          description: "Video editing challenge", 
-          registrationFee: 199,
-          prizeMoney: "Upto ₹4,000"
-        },
-        { 
-          name: "Lens & Vision", 
-          description: "Photography competition", 
-          registrationFee: 99,
-          prizeMoney: "Upto ₹2,000"
-        }
-      ],
-      icon: <Camera className="w-8 h-8" />,
-      color: "bg-carnival-red/10",
-      id: "media"
-    },
-    {
-      title: "Design Events",
-      description: "Unleash your creativity through various design challenges",
-      events: [
-        { 
-          name: "Problem Solver's Den", 
-          description: "Design thinking challenge", 
-          registrationFee: 199,
-          prizeMoney: "Upto ₹4,000"
-        },
-        { 
-          name: "Sustainable Outfit Design", 
-          description: "Eco-friendly fashion design", 
-          registrationFee: 199,
-          prizeMoney: "Upto ₹4,000"
-        },
-        { 
-          name: "Art Attack", 
-          description: "Creative art competition", 
-          registrationFee: 99,
-          prizeMoney: "Upto ₹2,000"
-        }
-      ],
-      icon: <Palette className="w-8 h-8" />,
-      color: "bg-carnival-brown/10",
-      id: "design"
-    },
-    {
-      title: "Literary Events",
-      description: "Express yourself through words and performance",
-      events: [
-        { 
-          name: "Stand Up Comedy", 
-          description: "Comedy performance competition", 
-          registrationFee: 99,
-          prizeMoney: "Upto ₹2,000"
-        },
-        { 
-          name: "Tag Your Product", 
-          description: "Creative writing for marketing", 
-          registrationFee: 99,
-          prizeMoney: "Upto ₹2,000"
-        },
-        { 
-          name: "Creative Expression", 
-          description: "Poetry and creative writing", 
-          registrationFee: 99,
-          prizeMoney: "Upto ₹2,000"
-        }
-      ],
-      icon: <Book className="w-8 h-8" />,
-      color: "bg-carnival-yellow/10",
-      id: "literary"
+      id: "lan"
     }
   ];
 
@@ -209,18 +104,18 @@ const EventCategories = () => {
 
   const handleRegister = () => {
     window.open('https://docs.google.com/forms/d/1xCojeTMGEaA177YhF8p0ZO1oGqUQUa5D0B0CpXxXFZc/viewform?edit_requested=true', '_blank');
-    toast.success('Redirecting to registration form');
+    toast.success('Redirecting to team registration form');
   };
 
   return (
-    <section className="py-20 bg-gradient-to-b from-carnival-cream to-white">
+    <section id="tournament" className="py-20 bg-gradient-to-b from-carnival-cream to-white">
       <div className="container mx-auto px-6">
         <motion.h2 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           className="text-4xl font-bold text-center mb-12 text-carnival-darkRed gradient-text"
         >
-          Event Categories
+          Tournament Structure
         </motion.h2>
 
         {/* Category Filter Buttons */}
@@ -236,7 +131,11 @@ const EventCategories = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              {category.charAt(0).toUpperCase() + category.slice(1)}
+              {category === 'all' ? 'All Stages' : 
+               category === 'online' ? 'Online Qualifiers' :
+               category === 'offline' ? 'Offline Rounds' :
+               category === 'regional' ? 'Regional Playoffs' :
+               'LAN Finals'}
             </motion.button>
           ))}
         </div>
@@ -291,8 +190,8 @@ const EventCategories = () => {
                       </CardHeader>
                       <CardContent className="relative z-10">
                         <div className="space-y-2 text-carnival-brown">
-                          <p className="font-semibold">Registration Fee: ₹{event.registrationFee}</p>
-                          <p className="font-semibold">Prize Money: {event.prizeMoney}</p>
+                          <p className="font-semibold">Entry: {event.registrationFee}</p>
+                          <p className="font-semibold">Reward: {event.prizeMoney}</p>
                         </div>
                       </CardContent>
                       <CardFooter className="relative z-10 bg-gradient-to-r from-carnival-cream/50 to-white/50 pt-4">
@@ -316,7 +215,7 @@ const EventCategories = () => {
             onClick={handleRegister}
             className="w-full md:w-auto mx-auto px-8 py-6 text-lg font-bold bg-carnival-red hover:bg-carnival-darkRed text-white shadow-xl hover:shadow-2xl transition-all duration-300 flex items-center gap-3"
           >
-            Register for Events
+            Register Your Team
           </Button>
         </motion.div>
       </div>

@@ -8,15 +8,15 @@ const ContactSection = () => {
   };
 
   const handleEmailClick = () => {
-    window.location.href = 'mailto:vizphoria@atriauniversity.edu.in';
+    window.location.href = 'mailto:info@campusclashindia.com';
   };
 
   const handlePhoneClick = () => {
-    window.location.href = 'tel:+916378130528';
+    window.location.href = 'tel:+919638605301';
   };
 
   const handleInstagramClick = () => {
-    window.open('https://www.instagram.com/vizphoria.fest', '_blank');
+    window.open('https://www.instagram.com/campusclashindia', '_blank');
   };
 
   return (
@@ -55,7 +55,7 @@ const ContactSection = () => {
               className="w-full h-full flex flex-col items-center gap-4 hover:bg-carnival-darkRed/10"
             >
               <Mail className="w-8 h-8 text-carnival-red" />
-              <p className="text-sm text-muted-foreground">vizphoria@atriauniversity.edu.in</p>
+              <p className="text-sm text-muted-foreground">info@campusclashindia.com</p>
             </Button>
           </motion.div>
 
@@ -71,7 +71,7 @@ const ContactSection = () => {
               className="w-full h-full flex flex-col items-center gap-4 hover:bg-carnival-darkRed/10"
             >
               <Phone className="w-8 h-8 text-carnival-red" />
-              <p className="text-sm text-muted-foreground">+91 63781 30528</p>
+              <p className="text-sm text-muted-foreground">+91 96386 05301</p>
             </Button>
           </motion.div>
 
@@ -87,7 +87,7 @@ const ContactSection = () => {
               className="w-full h-full flex flex-col items-center gap-4 hover:bg-carnival-darkRed/10"
             >
               <Instagram className="w-8 h-8 text-carnival-red" />
-              <p className="text-sm text-muted-foreground">@vizphoria.fest</p>
+              <p className="text-sm text-muted-foreground">@campusclashindia</p>
             </Button>
           </motion.div>
         </div>

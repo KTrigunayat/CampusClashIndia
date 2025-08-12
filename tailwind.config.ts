@@ -28,11 +28,11 @@ export default {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         carnival: {
-          red: "#E72625",
-          cream: "#FBF5D6",
-          yellow: "#FBC907",
-          darkRed: "#A61E22",
-          brown: "#99725F",
+          red: "#BF40BF", // Vibrant purple from image
+          cream: "#1A002B", // Dark purple background from image
+          yellow: "#FF2DCC", // Bright pink/magenta from image
+          darkRed: "#33004D", // Darker purple for pills/cards
+          brown: "#BF40BF", // Matching vibrant purple
         },
         primary: {
           DEFAULT: "hsl(var(--primary))",
@@ -88,10 +88,10 @@ export default {
         },
         glow: {
           "0%, 100%": { 
-            boxShadow: "0 0 5px rgba(251, 201, 7, 0.5), 0 0 20px rgba(231, 38, 37, 0.3)" 
+            boxShadow: "0 0 5px rgba(191, 64, 191, 0.5), 0 0 20px rgba(255, 45, 204, 0.3)" 
           },
           "50%": { 
-            boxShadow: "0 0 10px rgba(251, 201, 7, 0.8), 0 0 30px rgba(231, 38, 37, 0.5)" 
+            boxShadow: "0 0 10px rgba(191, 64, 191, 0.8), 0 0 30px rgba(255, 45, 204, 0.5)" 
           }
         },
         parallax: {
@@ -111,7 +111,7 @@ export default {
       },
       backgroundImage: {
         "carnival-pattern": "url('/carnival-pattern.svg')",
-        "hero-gradient": "linear-gradient(to right bottom, rgba(231, 38, 37, 0.9), rgba(166, 30, 34, 0.9))",
+        "hero-gradient": "linear-gradient(to right bottom, rgba(191, 64, 191, 0.9), rgba(255, 45, 204, 0.9))",
       },
     },
   },

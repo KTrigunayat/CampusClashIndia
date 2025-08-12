@@ -13,44 +13,44 @@ const FAQSection = () => {
   const { toast } = useToast();
   const faqs = [
     {
-      question: "What are the dates for Vizphoria Fest 2025?",
-      answer: "Vizphoria Fest will take place from 20th to 22nd February 2025."
+      question: "Who can participate in Campus Clash India?",
+      answer: "College students in India (age 16+) with valid student ID can participate. Each team must have 4 players + 1 substitute (optional)."
     },
     {
-      question: "How can I buy tickets for the festival?",
-      answer: "Tickets can be purchased directly through our official website. Visit the ticketing section, select your pass type, and follow the checkout process."
+      question: "What is the team size requirement?",
+      answer: "Each team must have exactly 4 players. You can register 1 substitute player (optional). All players must be from the same college."
     },
     {
-      question: "What are the event timings?",
-      answer: "The festival runs from 8 AM to 9 PM."
+      question: "Is there an entry fee for the tournament?",
+      answer: "Online qualifiers are FREE for all teams. There may be minimal charges for offline rounds at partner colleges (details TBD)."
     },
     {
-      question: "Will there be food and drinks available at the venue?",
-      answer: "Yes, multiple food and beverage stalls will be available, offering a wide variety of options."
+      question: "What game version and devices are allowed?",
+      answer: "Only BGMI (Battlegrounds Mobile India) latest version is allowed. Mobile devices only - NO emulators or PC versions permitted."
     },
     {
-      question: "Where can I get updates on events?",
-      answer: "Follow us on <a href='https://www.instagram.com/Vizphoria.fest' target='_blank' rel='noopener noreferrer' style='color: red; font-weight: bold;'>Instagram (@Vizphoria.fest)</a> for the latest updates."
+      question: "How does anti-cheat work?",
+      answer: "We use advanced detection systems to ensure fair play. Any violations (hacks, cheats, emulators) will result in immediate disqualification."
     },
     {
-      question: "What should I bring to the festival?",
-      answer: "A printed or digital festival pass, a valid Student ID for verification, and comfortable clothing & footwear for enjoying the festival."
+      question: "How do offline campus rounds work?",
+      answer: "35 partner colleges will host LAN events. Priority given to students from partner colleges. Limited guest slots available per city."
     },
     {
-      question: "Are there any age restrictions for attending?",
-      answer: "The festival is open to students aged 16+."
+      question: "What about travel for LAN finals?",
+      answer: "Organizers will coordinate logistics and accommodation for the top 16 teams reaching the Grand Finale at IIT Kharagpur."
     },
     {
-      question: "Is there parking available at the venue?",
-      answer: "Yes, parking is available but limited. We recommend carpooling or using public transportation."
+      question: "Where can I watch the matches?",
+      answer: "Follow us on <a href='https://www.instagram.com/campusclashindia' target='_blank' rel='noopener noreferrer' style='color: #00E5FF; font-weight: bold;'>Instagram (@campusclashindia)</a> for live streams and updates."
     },
     {
-      question: "How can I become a sponsor?",
-      answer: "Email us at <a href='mailto:vizphoria@atriauniversity.edu.in' style='color: red; font-weight: bold;'>vizphoria@atriauniversity.edu.in</a> to express sponsorship interest."
+      question: "How can I become a partner college?",
+      answer: "Email us at <a href='mailto:partners@campusclashindia.com' style='color: #00E5FF; font-weight: bold;'>partners@campusclashindia.com</a> to express interest in hosting offline rounds."
     },
     {
-      question: "Can I get a refund if I can't attend?",
-      answer: "Refunds are only available if the event is cancelled."
+      question: "What are the prizes for winners?",
+      answer: "Championship trophy, cash prizes, and gaming peripherals for the winning team. Detailed prize pool will be announced soon."
     }
   ];
 
@@ -71,10 +71,10 @@ const FAQSection = () => {
           className="text-center mb-12"
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-4 gradient-text">
-            FAQ's?
+            Frequently Asked Questions
           </h2>
           <p className="text-carnival-brown text-lg max-w-2xl mx-auto">
-            Find answers to commonly asked questions about Visphoria Fest
+            Find answers to commonly asked questions about Campus Clash India
           </p>
         </motion.div>
 

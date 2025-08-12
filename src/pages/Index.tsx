@@ -13,6 +13,9 @@ import TermsOfServiceModal from '@/components/TermsOfServiceModal';
 import ComingSoon from '@/components/ComingSoon';
 import Footer from '@/components/Footer';
 import TicketingSection from '@/components/TicketingSection';
+import Partners from '@/components/Partners';
+import RulesAndFormat from '@/components/RulesAndFormat';
+import RegistrationForm from '@/components/RegistrationForm';
 
 const Index = () => {
   const [mounted, setMounted] = useState(false);
@@ -38,12 +41,16 @@ const Index = () => {
           <Hero />
         </section>
         
-        <section id="events" className="mb-20">
+        <section id="tournament" className="mb-20">
           <EventCategories />
         </section>
 
-        <section id="tickets" className="mb-20">
+        <section id="stages" className="mb-20">
           <TicketingSection />
+        </section>
+
+        <section id="colleges" className="mb-20">
+          <Partners />
         </section>
         
         <section id="timeline" className="mb-20">
@@ -54,20 +61,20 @@ const Index = () => {
           <Gallery />
         </section>
 
-        <section id="artists" className="mb-20">
-          <ComingSoon title="Featured Artists" />
+        <section id="rules" className="mb-20">
+          <RulesAndFormat />
         </section>
-        
-        <section id="sponsors" className="mb-20">
-          <ComingSoon title="Our Sponsors" />
-        </section>
-        
-        <section id="venue" className="mb-20">
-          <VenueLocation />
+
+        <section id="registration" className="mb-20">
+          <RegistrationForm />
         </section>
         
         <section id="faq" className="mb-20">
           <FAQSection />
+        </section>
+
+        <section id="venue" className="mb-20">
+          <VenueLocation />
         </section>
 
         <section id="contact" className="mb-20">

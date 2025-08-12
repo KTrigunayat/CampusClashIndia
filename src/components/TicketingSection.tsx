@@ -1,43 +1,43 @@
 
 import { motion } from 'framer-motion';
-import { Crown, Star, Trophy } from 'lucide-react';
+import { Crown, Star, Trophy, Gamepad, Users, Target } from 'lucide-react';
 
 const TicketingSection = () => {
   const tickets = {
     passes: [
       {
-        name: "Day 1 Pass",
-        price: "₹99",
-        type: "day1",
-        date: "20th Feb",
-        features: ["Access to Jamming Sessions", "Emerging Bands Performance", "Premium Seating"]
+        name: "Online Qualifiers",
+        price: "15,000 Slots",
+        type: "online",
+        date: "Nationwide",
+        features: ["BGMI Game", "Anti-Cheat Enabled", "Room Codes Provided"]
       },
       {
-        name: "Day 2 Pass",
-        price: "₹99",
-        type: "day2",
-        date: "21st Feb",
-        features: ["Stand-up Comedy Show", "Premium Seating", "Free Refreshments"]
+        name: "Offline Campus Rounds",
+        price: "35 Partners",
+        type: "offline",
+        date: "Partner Colleges",
+        features: ["LAN Setup", "On-ground Admins", "Spectator Area"]
       },
       {
-        name: "Day 3 Pass",
-        price: "₹99",
-        type: "day3",
-        date: "22nd Feb",
-        features: ["Grand DJ Night", "Dance Floor Access", "Special Effects Show"]
+        name: "Regional Playoffs",
+        price: "Broadcast",
+        type: "regional",
+        date: "Online Stream",
+        features: ["Live Commentary", "Pro Observers", "Regional Champions"]
       },
       {
-        name: "Festival Pass",
-        price: "₹249",
-        type: "festival",
-        date: "20th-22nd Feb",
-        features: ["Full 3-Day Access", "All Events Access", "Priority Entry", "Exclusive Merch"]
+        name: "Grand Finale LAN",
+        price: "Top 16 Teams",
+        type: "lan",
+        date: "IIT Kharagpur",
+        features: ["Main Stage", "Live Audience", "Championship Trophy"]
       }
     ]
   };
 
   return (
-    <section id="tickets" className="py-20 bg-gradient-to-b from-carnival-cream to-white">
+    <section id="stages" className="py-20 bg-gradient-to-b from-carnival-cream to-white">
       <div className="container mx-auto px-4 max-w-6xl">
         <motion.h2 
           initial={{ opacity: 0, y: 20 }}
@@ -45,7 +45,7 @@ const TicketingSection = () => {
           transition={{ duration: 0.6 }}
           className="text-4xl md:text-5xl font-bold text-center mb-16 text-carnival-darkRed tracking-tight"
         >
-          FESTIVAL PASSES
+          TOURNAMENT STAGES
         </motion.h2>
         
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
@@ -56,14 +56,14 @@ const TicketingSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
               className={`relative bg-white rounded-xl p-6 shadow-lg border-2 transition-all duration-300 hover:shadow-2xl ${
-                ticket.type === 'festival' 
+                ticket.type === 'lan' 
                   ? 'border-carnival-yellow transform hover:-translate-y-2' 
                   : 'border-carnival-cream transform hover:-translate-y-2'
               }`}
             >
-              {ticket.type === 'festival' && (
+              {ticket.type === 'lan' && (
                 <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-carnival-yellow text-white px-4 py-1 rounded-full text-sm font-bold shadow-lg">
-                  Best Value
+                  Grand Finale
                 </div>
               )}
               
@@ -75,10 +75,14 @@ const TicketingSection = () => {
                     {ticket.price}
                   </p>
                 </div>
-                {ticket.type === 'festival' ? (
+                {ticket.type === 'lan' ? (
                   <Crown className="w-8 h-8 text-carnival-yellow animate-pulse" />
+                ) : ticket.type === 'online' ? (
+                  <Gamepad className="w-8 h-8 text-carnival-red" />
+                ) : ticket.type === 'offline' ? (
+                  <Users className="w-8 h-8 text-carnival-brown" />
                 ) : (
-                  <Trophy className="w-8 h-8 text-carnival-brown opacity-75" />
+                  <Target className="w-8 h-8 text-carnival-brown opacity-75" />
                 )}
               </div>
               
