@@ -125,7 +125,11 @@ const EventCategories = () => {
   };
 
   return (
+<<<<<<< HEAD
     <section id="tournament" className="py-20 bg-gradient-to-b from-ai-dark to-ai-light">
+=======
+    <section id="tournament" className="py-20 bg-gradient-to-b from-white via-white to-carnival-cream/10">
+>>>>>>> 730d1faa96d3d205b269fa0740d611f3e1b5b7db
       <div className="container mx-auto px-6">
         <motion.h2 
           initial={{ opacity: 0, y: 20 }}
