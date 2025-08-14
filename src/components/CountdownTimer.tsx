@@ -38,16 +38,16 @@ const CountdownTimer = () => {
     <motion.div 
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="flex flex-wrap justify-center items-center gap-2 sm:gap-4 text-carnival-cream py-4 sm:py-8 px-2"
+      className="flex flex-wrap justify-center items-center gap-2 sm:gap-4 text-white py-4 sm:py-8 px-2"
     >
       {Object.entries(timeLeft).map(([unit, value]) => (
         <div key={unit} className="text-center">
           <motion.div 
-            className="bg-carnival-darkRed/30 backdrop-blur-sm rounded-lg p-2 sm:p-4 min-w-[70px] sm:min-w-[100px]"
+            className="bg-ai-surface/30 backdrop-blur-sm rounded-lg p-2 sm:p-4 min-w-[70px] sm:min-w-[100px] border border-ai-border"
             whileHover={{ scale: 1.05 }}
           >
-            <div className="text-2xl sm:text-4xl font-bold">{value.toString().padStart(2, '0')}</div>
-            <div className="text-xs sm:text-sm uppercase mt-1">{unit}</div>
+            <div className="text-2xl sm:text-4xl font-bold text-ai-primary">{value.toString().padStart(2, '0')}</div>
+            <div className="text-xs sm:text-sm uppercase mt-1 text-ai-muted">{unit}</div>
           </motion.div>
         </div>
       ))}

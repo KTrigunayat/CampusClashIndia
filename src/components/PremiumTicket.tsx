@@ -93,7 +93,7 @@ const PremiumTicket = ({ type, price, date, ticketId, onShare }: PremiumTicketPr
         <div className="absolute bottom-0 left-0 w-24 h-24 bg-carnival-red/10 rounded-tr-full" />
         
         {/* Bottom Border */}
-        <div className="h-2 bg-gradient-to-r from-carnival-red via-carnival-yellow to-carnival-darkRed" />
+        <div className="h-2 bg-gradient-to-r from-ai-primary via-ai-secondary to-ai-accent" />
       </div>
     </motion.div>
   );

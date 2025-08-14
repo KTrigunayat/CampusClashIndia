@@ -48,13 +48,13 @@ const Partners = () => {
   ];
 
   return (
-    <section id="colleges" className="py-20 bg-gradient-to-b from-carnival-cream to-white">
+    <section id="colleges" className="py-20 bg-gradient-to-b from-ai-light to-ai-dark">
       <div className="container mx-auto px-4">
         <motion.h2 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-4xl md:text-5xl font-bold text-center mb-16 text-carnival-darkRed tracking-tight"
+          className="text-4xl md:text-5xl font-bold text-center mb-16 text-white tracking-tight"
         >
           PARTNER COLLEGES
         </motion.h2>
@@ -66,10 +66,10 @@ const Partners = () => {
           className="text-center mb-12"
         >
           <div className="flex items-center justify-center gap-4 mb-4">
-            <Users className="w-8 h-8 text-carnival-red" />
-            <span className="text-2xl font-bold text-carnival-darkRed">35 Partner Colleges</span>
+            <Users className="w-8 h-8 text-ai-primary" />
+            <span className="text-2xl font-bold text-white">35 Partner Colleges</span>
           </div>
-          <p className="text-carnival-brown text-lg max-w-3xl mx-auto">
+          <p className="text-ai-muted text-lg max-w-3xl mx-auto">
             Join us for offline campus rounds at these prestigious institutions across India
           </p>
         </motion.div>
@@ -82,16 +82,16 @@ const Partners = () => {
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ delay: index * 0.05 }}
               whileHover={{ scale: 1.05 }}
-              className="bg-white rounded-lg p-4 shadow-lg border-2 border-carnival-red/10 hover:border-carnival-red/30 transition-all duration-300"
+              className="bg-ai-card rounded-lg p-4 shadow-lg border border-ai-border hover:border-ai-primary/30 transition-all duration-300"
             >
               <div className="text-center">
-                <div className="w-16 h-16 mx-auto mb-3 bg-carnival-red/10 rounded-full flex items-center justify-center">
-                  <Building2 className="w-8 h-8 text-carnival-red" />
+                <div className="w-16 h-16 mx-auto mb-3 bg-ai-primary/10 rounded-full flex items-center justify-center">
+                  <Building2 className="w-8 h-8 text-ai-primary" />
                 </div>
-                <h3 className="font-semibold text-carnival-darkRed text-sm mb-1 line-clamp-2">
+                <h3 className="font-semibold text-white text-sm mb-1 line-clamp-2">
                   {partner.name}
                 </h3>
-                <div className="flex items-center justify-center gap-1 text-carnival-brown text-xs">
+                <div className="flex items-center justify-center gap-1 text-ai-muted text-xs">
                   <MapPin className="w-3 h-3" />
                   <span>{partner.city}</span>
                 </div>
@@ -106,12 +106,12 @@ const Partners = () => {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="text-center mt-12"
         >
-          <p className="text-carnival-brown mb-4">
+          <p className="text-ai-muted mb-4">
             Want your college to be a partner? Contact us!
           </p>
           <a 
             href="mailto:partners@campusclashindia.com"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-carnival-red text-white rounded-full transition-all duration-300 font-medium hover:bg-carnival-darkRed"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-ai-primary to-ai-secondary text-white rounded-full transition-all duration-300 font-medium hover:from-ai-secondary hover:to-ai-primary"
           >
             Become a Partner College
           </a>

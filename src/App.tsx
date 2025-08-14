@@ -29,8 +29,8 @@ const Index = lazy(() => import("./pages/Index"));
 
 // Loading component
 const Loading = () => (
-  <div className="min-h-screen flex items-center justify-center bg-carnival-cream">
-    <div className="animate-pulse text-carnival-red text-2xl font-bold">
+  <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-ai-darker to-ai-dark">
+    <div className="animate-pulse text-ai-primary text-2xl font-bold">
       Loading Vizphoria...
     </div>
   </div>

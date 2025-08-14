@@ -77,13 +77,13 @@ const Navigation = () => {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-carnival-red/80 backdrop-blur-md shadow-lg' : 'bg-carnival-red/90'
+        isScrolled ? 'bg-gradient-to-r from-ai-primary/90 to-ai-secondary/90 backdrop-blur-md shadow-lg' : 'bg-gradient-to-r from-ai-primary/95 to-ai-secondary/95'
       }`}
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16 sm:h-20">
           <motion.span 
-            className="text-carnival-cream text-xl sm:text-2xl font-bold"
+            className="text-white text-xl sm:text-2xl font-bold"
             whileHover={{ scale: 1.05 }}
           >
             Campus Clash India
@@ -91,7 +91,7 @@ const Navigation = () => {
           
           <Button
             variant="ghost"
-            className="sm:hidden text-carnival-cream hover:bg-carnival-darkRed/20"
+            className="sm:hidden text-white hover:bg-white/20"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           >
@@ -117,7 +117,7 @@ const Navigation = () => {
               <motion.button
                 key={id}
                 onClick={() => handleNavClick(id)}
-                className={`relative text-carnival-cream hover:text-carnival-yellow transition-colors text-sm md:text-base
+                className={`relative text-white hover:text-ai-accent transition-colors text-sm md:text-base
                   ${activeSection === id ? 'font-bold' : 'font-medium'}`}
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
@@ -126,7 +126,7 @@ const Navigation = () => {
                 {activeSection === id && (
                   <motion.div
                     layoutId="activeSection"
-                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-carnival-yellow"
+                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-ai-accent"
                     initial={false}
                     transition={{ type: "spring", stiffness: 380, damping: 30 }}
                   />
@@ -143,7 +143,7 @@ const Navigation = () => {
             opacity: isMenuOpen ? 1 : 0
           }}
           transition={{ duration: 0.3 }}
-          className={`sm:hidden overflow-hidden bg-carnival-darkRed/10 rounded-b-lg ${
+          className={`sm:hidden overflow-hidden bg-white/10 rounded-b-lg ${
             isMenuOpen ? 'pb-4' : ''
           }`}
         >
@@ -162,9 +162,9 @@ const Navigation = () => {
               <motion.button
                 key={id}
                 onClick={() => handleNavClick(id)}
-                className={`text-carnival-cream hover:text-carnival-yellow transition-colors text-left py-3 px-4 rounded-md
-                  ${activeSection === id ? 'font-bold bg-carnival-darkRed/20' : 'font-medium'}
-                  active:bg-carnival-darkRed/30 touch-manipulation`}
+                className={`text-white hover:text-ai-accent transition-colors text-left py-3 px-4 rounded-md
+                  ${activeSection === id ? 'font-bold bg-white/20' : 'font-medium'}
+                  active:bg-white/30 touch-manipulation`}
                 whileTap={{ scale: 0.98 }}
               >
                 {label}

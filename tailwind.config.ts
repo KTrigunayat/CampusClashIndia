@@ -27,12 +27,29 @@ export default {
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
-        carnival: {
-          red: "#BF40BF", // Vibrant purple from image
-          cream: "#1A002B", // Dark purple background from image
-          yellow: "#FF2DCC", // Bright pink/magenta from image
-          darkRed: "#33004D", // Darker purple for pills/cards
-          brown: "#BF40BF", // Matching vibrant purple
+        // Dark theme color scheme inspired by AI for Students website
+        ai: {
+          primary: "#6366F1", // Indigo primary
+          secondary: "#8B5CF6", // Purple secondary
+          accent: "#06B6D4", // Cyan accent
+          dark: "#0A0A0A", // Very dark background
+          darker: "#000000", // Pure black
+          light: "#1A1A1A", // Dark gray
+          surface: "#1E1E1E", // Card surface
+          muted: "#6B7280", // Muted text
+          border: "#2D2D2D", // Dark borders
+          card: "#1F1F1F", // Card background
+          hover: "#2A2A2A", // Hover state
+          gradient: {
+            from: "#6366F1",
+            via: "#8B5CF6", 
+            to: "#06B6D4"
+          },
+          darkGradient: {
+            from: "#0A0A0A",
+            via: "#1A1A1A",
+            to: "#2A2A2A"
+          }
         },
         primary: {
           DEFAULT: "hsl(var(--primary))",
@@ -76,7 +93,7 @@ export default {
           "0%, 100%": { transform: "translateY(0)" },
           "50%": { transform: "translateY(-10px)" },
         },
-        carnival: {
+        ai: {
           "0%": { transform: "rotate(0deg) scale(1)" },
           "50%": { transform: "rotate(5deg) scale(1.1)" },
           "100%": { transform: "rotate(0deg) scale(1)" },
@@ -88,30 +105,43 @@ export default {
         },
         glow: {
           "0%, 100%": { 
-            boxShadow: "0 0 5px rgba(191, 64, 191, 0.5), 0 0 20px rgba(255, 45, 204, 0.3)" 
+            boxShadow: "0 0 5px rgba(99, 102, 241, 0.5), 0 0 20px rgba(139, 92, 246, 0.3)" 
           },
           "50%": { 
-            boxShadow: "0 0 10px rgba(191, 64, 191, 0.8), 0 0 30px rgba(255, 45, 204, 0.5)" 
+            boxShadow: "0 0 10px rgba(99, 102, 241, 0.8), 0 0 30px rgba(139, 92, 246, 0.5)" 
           }
         },
         parallax: {
           "0%": { transform: "translateY(0)" },
           "50%": { transform: "translateY(-20px)" },
           "100%": { transform: "translateY(0)" }
+        },
+        cardHover: {
+          "0%": { transform: "translateY(0) scale(1)" },
+          "100%": { transform: "translateY(-8px) scale(1.02)" }
+        },
+        cardGlow: {
+          "0%": { boxShadow: "0 4px 20px rgba(99, 102, 241, 0.1)" },
+          "100%": { boxShadow: "0 8px 40px rgba(99, 102, 241, 0.3)" }
         }
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         float: "float 6s ease-in-out infinite",
-        carnival: "carnival 3s ease-in-out infinite",
+        ai: "ai 3s ease-in-out infinite",
         gradient: "gradient 15s ease infinite",
         glow: "glow 3s ease-in-out infinite",
-        parallax: "parallax 15s ease-in-out infinite"
+        parallax: "parallax 15s ease-in-out infinite",
+        cardHover: "cardHover 0.3s ease-out forwards",
+        cardGlow: "cardGlow 0.3s ease-out forwards"
       },
       backgroundImage: {
-        "carnival-pattern": "url('/carnival-pattern.svg')",
-        "hero-gradient": "linear-gradient(to right bottom, rgba(191, 64, 191, 0.9), rgba(255, 45, 204, 0.9))",
+        "ai-pattern": "url('/carnival-pattern.svg')",
+        "hero-gradient": "linear-gradient(135deg, #6366F1 0%, #8B5CF6 50%, #06B6D4 100%)",
+        "ai-gradient": "linear-gradient(135deg, #6366F1 0%, #8B5CF6 100%)",
+        "tech-gradient": "linear-gradient(135deg, #0A0A0A 0%, #1A1A1A 100%)",
+        "dark-gradient": "linear-gradient(135deg, #000000 0%, #0A0A0A 50%, #1A1A1A 100%)",
       },
     },
   },

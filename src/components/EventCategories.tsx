@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Trophy, Target, Gamepad, Map, Users, Award, Calendar } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
+import EventCard from './EventCard';
 import {
   Card,
   CardContent,
@@ -12,108 +13,124 @@ import {
   CardFooter,
 } from "@/components/ui/card";
 
-  const categories = [
-    {
-      title: "Online Qualifiers",
-      description: "Nationwide online BGMI qualifiers with anti-cheat protection",
-      events: [
-        { 
-          name: "Open Qualifiers", 
-          description: "15,000 team slots available for nationwide competition", 
-          registrationFee: "FREE",
-          prizeMoney: "Advancement to Offline Rounds"
-        },
-        { 
-          name: "Anti-Cheat Enabled", 
-          description: "Advanced detection systems ensure fair play", 
-          registrationFee: "Included",
-          prizeMoney: "Fair Competition Guaranteed"
-        }
-      ],
-      icon: <Gamepad className="w-8 h-8" />,
-      color: "bg-carnival-red/10",
-      id: "online"
-    },
-    {
-      title: "Offline Campus Rounds",
-      description: "On-ground qualifiers across 35 partner colleges",
-      events: [
-        { 
-          name: "Partner College LAN", 
-          description: "LAN setup with on-ground administrators", 
-          registrationFee: "Qualified Teams",
-          prizeMoney: "City-wise Winners"
-        },
-        { 
-          name: "Spectator Area", 
-          description: "Live viewing experience for college students", 
-          registrationFee: "Free Entry",
-          prizeMoney: "Campus Champions"
-        }
-      ],
-      icon: <Users className="w-8 h-8" />,
-      color: "bg-carnival-yellow/10",
-      id: "offline"
-    },
-    {
-      title: "Regional Playoffs",
-      description: "Top performers from online and offline rounds compete",
-      events: [
-        { 
-          name: "Broadcast Matches", 
-          description: "Professional streaming with commentary", 
-          registrationFee: "Qualified Teams",
-          prizeMoney: "Regional Champions"
-        },
-        { 
-          name: "Pro Observers", 
-          description: "Expert oversight and fair play monitoring", 
-          registrationFee: "Included",
-          prizeMoney: "Advancement to LAN Finals"
-        }
-      ],
-      icon: <Target className="w-8 h-8" />,
-      color: "bg-carnival-brown/10",
-      id: "regional"
-    },
-    {
-      title: "Grand Finale LAN",
-      description: "Top 16 teams battle at IIT Kharagpur for the championship",
-      events: [
-        { 
-          name: "Main Stage Finals", 
-          description: "Professional esports arena setup", 
-          registrationFee: "Top 16 Teams",
-          prizeMoney: "Championship Trophy + Prizes"
-        },
-        { 
-          name: "Live Audience", 
-          description: "Spectator experience with live commentary", 
-          registrationFee: "Free Entry",
-          prizeMoney: "Ultimate Glory"
-        }
-      ],
-      icon: <Trophy className="w-8 h-8" />,
-      color: "bg-carnival-yellow/10",
-      id: "lan"
-    }
-  ];
+const categories = [
+  {
+    title: "Online Qualifiers",
+    description: "District-level online qualifiers with anti-cheat protection and two phases",
+    events: [
+      {
+        title: "Phase 1 (District Level)",
+        description: "10–20 Sep • Single Match Elimination • 250+ colleges • 10,000+ teams • Groups of 20 • Top 2 → Phase 2",
+        date: "Online",
+        registrationFee: "FREE",
+        prizeMoney: "Qualify to Phase 2"
+      },
+      {
+        title: "Phase 2 (District Level)",
+        description: "20–29 Sep • 2 Custom Room Matches • Groups of 20 • Top 4 → State Level",
+        date: "Online",
+        registrationFee: "FREE",
+        prizeMoney: "Qualify to State Level"
+      }
+    ],
+    icon: <Gamepad className="w-8 h-8" />,
+    color: "bg-ai-primary/10",
+    id: "online"
+  },
+  {
+    title: "Offline Campus Rounds",
+    description: "20 Aug – 15 Sep • 30+ colleges across India • Top 4 teams from each college qualify to Regionals",
+    events: [
+      {
+        title: "Partner College LAN",
+        description: "LAN setup with on-ground administrators • Spectator area",
+        date: "20 Aug – 15 Sep",
+        registrationFee: "Qualified Teams",
+        prizeMoney: "Top 4 → Regionals"
+      },
+      {
+        title: "Campus Finals",
+        description: "On-site qualifiers to determine campus champions",
+        date: "Across India",
+        registrationFee: "Free Entry for Spectators",
+        prizeMoney: "Campus Champions"
+      }
+    ],
+    icon: <Users className="w-8 h-8" />,
+    color: "bg-ai-secondary/10",
+    id: "offline"
+  },
+  {
+    title: "Regional Playoffs",
+    description: "1–19 Oct • State → Regionals → National Semi-finals",
+    events: [
+      {
+        title: "State Level (Online)",
+        description: "1–8 Oct • 3 Custom Room Matches • Top 5 per group → Regionals",
+        date: "Online",
+        registrationFee: "Qualified Teams",
+        prizeMoney: "Advance to Regionals"
+      },
+      {
+        title: "Regionals & Semi-finals (Online)",
+        description: "9–15 Oct Regionals: 4 Matches • Top 6 → 15–19 Oct National Semi-finals: 6 Matches • Top 15 → Nationals Finals",
+        date: "Online Stream",
+        registrationFee: "Qualified Teams",
+        prizeMoney: "Advance to Nationals Finals"
+      }
+    ],
+    icon: <Target className="w-8 h-8" />,
+    color: "bg-ai-accent/10",
+    id: "regional"
+  },
+  {
+    title: "Grand Finale LAN",
+    description: "31 Oct – 1 Nov • IIT Kharagpur • Top 16 teams battle for the championship",
+    events: [
+      {
+        title: "National Grand Finale",
+        description: "8 Custom Room Matches to decide the Champion",
+        date: "IIT Kharagpur",
+        registrationFee: "Top 16 Teams (15 qualified + 1 invited)",
+        prizeMoney: "Championship Trophy + Prizes"
+      },
+      {
+        title: "Live Audience",
+        description: "Spectator experience with live commentary",
+        date: "31 Oct – 1 Nov",
+        registrationFee: "Free Entry",
+        prizeMoney: "Ultimate Glory"
+      }
+    ],
+    icon: <Trophy className="w-8 h-8" />,
+    color: "bg-ai-accent/10",
+    id: "lan"
+  }
+];
 
 const EventCategories = () => {
   const [activeCategory, setActiveCategory] = useState('all');
 
   const handleRegister = () => {
-    window.open('https://docs.google.com/forms/d/1xCojeTMGEaA177YhF8p0ZO1oGqUQUa5D0B0CpXxXFZc/viewform?edit_requested=true', '_blank');
-    toast.success('Redirecting to team registration form');
+    const element = document.getElementById('registration');
+    if (!element) {
+      toast.error('Registration section not found');
+      return;
+    }
+    const offset = window.innerWidth < 640 ? 60 : 80;
+    const elementPosition = element.getBoundingClientRect().top;
+    const offsetPosition = elementPosition + window.pageYOffset - offset;
+    window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+    toast.success('Scrolling to registration form');
   };
 
   return (
-    <section id="tournament" className="py-20 bg-gradient-to-b from-carnival-cream to-white">
+    <section id="tournament" className="py-20 bg-gradient-to-b from-ai-dark to-ai-light">
       <div className="container mx-auto px-6">
         <motion.h2 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          className="text-4xl font-bold text-center mb-12 text-carnival-darkRed gradient-text"
+          className="text-4xl font-bold text-center mb-12 text-white gradient-text"
         >
           Tournament Structure
         </motion.h2>
@@ -126,8 +143,8 @@ const EventCategories = () => {
               onClick={() => setActiveCategory(category)}
               className={`px-6 py-3 rounded-full text-lg font-semibold transition-all duration-300 shadow-lg
                 ${activeCategory === category 
-                  ? 'bg-carnival-red text-white scale-105' 
-                  : 'bg-white text-carnival-red hover:bg-carnival-red/10'}`}
+                  ? 'bg-gradient-to-r from-ai-primary to-ai-secondary text-white scale-105' 
+                  : 'bg-ai-surface text-ai-muted hover:bg-ai-hover hover:text-white border border-ai-border'}`}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -141,83 +158,41 @@ const EventCategories = () => {
         </div>
 
         <div className="space-y-16">
-          {categories
-            .filter(cat => activeCategory === 'all' || cat.id === activeCategory)
-            .map((category, categoryIndex) => (
+          {categories.map((category, categoryIndex) => (
             <motion.div
-              key={category.title}
-              initial={{ opacity: 0, y: 20 }}
+              key={category.id}
+              initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: categoryIndex * 0.2 }}
-              className="space-y-8"
+              className={`${activeCategory === 'all' || activeCategory === category.id ? 'block' : 'hidden'}`}
             >
-              <div className="flex items-center gap-4 mb-8">
-                <motion.div
-                  whileHover={{ scale: 1.1, rotate: 360 }}
-                  transition={{ duration: 0.3 }}
-                  className={`p-4 rounded-full ${category.color}`}
-                >
-                  {category.icon}
-                </motion.div>
-                <div>
-                  <h3 className="text-2xl font-bold text-carnival-darkRed">{category.title}</h3>
-                  <p className="text-carnival-brown mt-2">{category.description}</p>
-                </div>
+              <div className="text-center mb-12">
+                <h3 className="text-3xl font-bold text-white mb-4">{category.title}</h3>
+                <p className="text-ai-muted text-lg max-w-2xl mx-auto">{category.description}</p>
               </div>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {category.events.map((event, index) => (
+
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {category.events.map((event, eventIndex) => (
                   <motion.div
-                    key={event.name}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: index * 0.1 }}
+                    key={event.title}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: eventIndex * 0.1 }}
+                    className="card-hover"
                   >
-                    <Card className="relative overflow-hidden bg-gradient-to-br from-carnival-cream to-white border-2 border-carnival-yellow/20 shadow-xl transform hover:-translate-y-1 transition-transform duration-300">
-                      <div className="absolute top-0 right-0 w-24 h-24 bg-carnival-yellow/10 rounded-bl-full" />
-                      <CardHeader className="relative z-10">
-                        <div className="flex items-center gap-4">
-                          <div className="p-3 rounded-full bg-carnival-red/10">
-                            <Calendar className="w-6 h-6 text-carnival-red" />
-                          </div>
-                          <div>
-                            <CardTitle className="text-xl font-bold text-carnival-darkRed">{event.name}</CardTitle>
-                            <CardDescription className="text-carnival-brown">
-                              {event.description}
-                            </CardDescription>
-                          </div>
-                        </div>
-                      </CardHeader>
-                      <CardContent className="relative z-10">
-                        <div className="space-y-2 text-carnival-brown">
-                          <p className="font-semibold">Entry: {event.registrationFee}</p>
-                          <p className="font-semibold">Reward: {event.prizeMoney}</p>
-                        </div>
-                      </CardContent>
-                      <CardFooter className="relative z-10 bg-gradient-to-r from-carnival-cream/50 to-white/50 pt-4">
-                        <div className="w-full h-1 bg-carnival-red/20 rounded-full" />
-                      </CardFooter>
-                    </Card>
+                    <EventCard
+                      title={event.title}
+                      description={event.description}
+                      date={event.date}
+                      category={category.id}
+                      onRegister={handleRegister}
+                    />
                   </motion.div>
                 ))}
               </div>
             </motion.div>
           ))}
         </div>
-
-        {/* Register Button */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          className="mt-16 flex justify-center"
-        >
-          <Button
-            onClick={handleRegister}
-            className="w-full md:w-auto mx-auto px-8 py-6 text-lg font-bold bg-carnival-red hover:bg-carnival-darkRed text-white shadow-xl hover:shadow-2xl transition-all duration-300 flex items-center gap-3"
-          >
-            Register Your Team
-          </Button>
-        </motion.div>
       </div>
     </section>
   );

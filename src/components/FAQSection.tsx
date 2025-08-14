@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion';
-import { ChevronDown, MessageCircle } from 'lucide-react';
 import {
   Accordion,
   AccordionContent,
@@ -7,119 +6,98 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
-import { useToast } from "@/hooks/use-toast";
+import { MessageCircle } from 'lucide-react';
 
 const FAQSection = () => {
-  const { toast } = useToast();
   const faqs = [
     {
-      question: "Who can participate in Campus Clash India?",
-      answer: "College students in India (age 16+) with valid student ID can participate. Each team must have 4 players + 1 substitute (optional)."
+      question: "How do I register my team for Campus Clash India?",
+      answer: "Team registration is now open! Visit our registration page and fill out the form with your team details. Each team must have exactly 4 players from the same college."
     },
     {
-      question: "What is the team size requirement?",
-      answer: "Each team must have exactly 4 players. You can register 1 substitute player (optional). All players must be from the same college."
+      question: "What are the technical requirements for the tournament?",
+      answer: "You need a stable internet connection, BGMI version 2.9 or higher, minimum 4GB RAM, and Android 5.1+ or iOS 9.0+. Discord will be used for team communication."
     },
     {
       question: "Is there an entry fee for the tournament?",
-      answer: "Online qualifiers are FREE for all teams. There may be minimal charges for offline rounds at partner colleges (details TBD)."
+      answer: "Online qualifiers are completely FREE! There are no entry fees for participating in Campus Clash India. All qualified teams can compete without any cost."
     },
     {
-      question: "What game version and devices are allowed?",
-      answer: "Only BGMI (Battlegrounds Mobile India) latest version is allowed. Mobile devices only - NO emulators or PC versions permitted."
+      question: "What is the tournament format and schedule?",
+      answer: "The tournament has 4 stages: Online Qualifiers (15,000 slots), Offline Campus Rounds (35 partner colleges), Regional Playoffs (live streaming), and Grand Finale LAN at IIT Kharagpur."
     },
     {
-      question: "How does anti-cheat work?",
-      answer: "We use advanced detection systems to ensure fair play. Any violations (hacks, cheats, emulators) will result in immediate disqualification."
-    },
-    {
-      question: "How do offline campus rounds work?",
-      answer: "35 partner colleges will host LAN events. Priority given to students from partner colleges. Limited guest slots available per city."
-    },
-    {
-      question: "What about travel for LAN finals?",
-      answer: "Organizers will coordinate logistics and accommodation for the top 16 teams reaching the Grand Finale at IIT Kharagpur."
-    },
-    {
-      question: "Where can I watch the matches?",
-      answer: "Follow us on <a href='https://www.instagram.com/campusclashindia' target='_blank' rel='noopener noreferrer' style='color: #00E5FF; font-weight: bold;'>Instagram (@campusclashindia)</a> for live streams and updates."
-    },
-    {
-      question: "How can I become a partner college?",
-      answer: "Email us at <a href='mailto:partners@campusclashindia.com' style='color: #00E5FF; font-weight: bold;'>partners@campusclashindia.com</a> to express interest in hosting offline rounds."
+      question: "How is anti-cheat protection implemented?",
+      answer: "We use advanced detection systems, screen recording requirements, and professional observers. Any violation of fair play rules results in immediate disqualification."
     },
     {
       question: "What are the prizes for winners?",
-      answer: "Championship trophy, cash prizes, and gaming peripherals for the winning team. Detailed prize pool will be announced soon."
+      answer: "Prize pool details will be announced soon. Winners will receive championship trophies, certificates, and exciting rewards. Stay tuned for updates!"
     }
   ];
 
   const handleContactClick = () => {
-    toast({
-      title: "Contact Form Opening",
-      description: "Our team will get back to you within 24 hours!",
-    });
+    window.open('https://wa.me/919638605301', '_blank');
   };
 
   return (
-    <section className="py-20 relative overflow-hidden">
-      <div className="container relative z-10 mx-auto px-4">
+    <section id="faq" className="py-20 bg-gradient-to-b from-ai-light to-ai-dark">
+      <div className="container mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 gradient-text">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">
             Frequently Asked Questions
           </h2>
-          <p className="text-carnival-brown text-lg max-w-2xl mx-auto">
-            Find answers to commonly asked questions about Campus Clash India
+          <p className="text-ai-muted text-lg max-w-2xl mx-auto">
+            Find answers to common questions about Campus Clash India tournament
           </p>
         </motion.div>
+
+        <div className="max-w-4xl mx-auto">
+          <Accordion type="single" collapsible className="space-y-4">
+            {faqs.map((faq, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+              >
+                <AccordionItem value={`item-${index}`} className="bg-ai-card/80 backdrop-blur-sm rounded-lg border border-ai-border overflow-hidden">
+                  <AccordionTrigger className="px-6 py-4 text-left">
+                    <span className="text-white font-medium group-hover:text-ai-primary transition-colors">
+                      {faq.question}
+                    </span>
+                  </AccordionTrigger>
+                  <AccordionContent className="px-6 pb-4 text-ai-muted">
+                    {faq.answer}
+                  </AccordionContent>
+                </AccordionItem>
+              </motion.div>
+            ))}
+          </Accordion>
+        </div>
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="max-w-3xl mx-auto mb-12"
-        >
-          <Accordion type="single" collapsible className="space-y-4">
-            {faqs.map((faq, index) => (
-              <AccordionItem
-                key={index}
-                value={`item-${index}`}
-                className="bg-white/80 backdrop-blur-sm rounded-lg border-2 border-carnival-red/20 overflow-hidden"
-              >
-                <AccordionTrigger className="px-6 py-4 hover:no-underline group">
-                  <span className="text-carnival-darkRed font-medium group-hover:text-carnival-red transition-colors">
-                    {faq.question}
-                  </span>
-                </AccordionTrigger>
-                <AccordionContent className="px-6 pb-4 text-carnival-brown">
-                  <span dangerouslySetInnerHTML={{ __html: faq.answer }} />
-                </AccordionContent>
-
-              </AccordionItem>
-            ))}
-          </Accordion>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="text-center"
+          className="text-center mt-12"
         >
+          <p className="text-ai-muted mb-6">
+            Still have questions? We're here to help!
+          </p>
           <Button
             onClick={handleContactClick}
-            className="bg-carnival-red hover:bg-carnival-darkRed text-carnival-cream group
-              px-8 py-6 rounded-full text-lg font-bold
-              transform transition-all duration-300
-              hover:scale-105 hover:shadow-lg hover:shadow-carnival-red/20"
+            className="bg-gradient-to-r from-ai-primary to-ai-secondary hover:from-ai-secondary hover:to-ai-primary text-white group
+              px-8 py-4 rounded-full font-bold text-lg transition-all duration-300 flex items-center gap-3 mx-auto
+              hover:scale-105 hover:shadow-lg hover:shadow-ai-primary/20"
           >
-            <MessageCircle className="w-5 h-5 mr-2 group-hover:rotate-12 transition-transform" />
-            Still Have Questions?
+            <MessageCircle className="w-5 h-5" />
+            Contact Support
           </Button>
         </motion.div>
       </div>

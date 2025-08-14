@@ -75,7 +75,7 @@ const RegistrationForm = () => {
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-b from-carnival-cream to-white">
+    <section className="py-20 bg-gradient-to-b from-ai-dark to-ai-light">
       <div className="container mx-auto px-4 max-w-4xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -83,10 +83,10 @@ const RegistrationForm = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-carnival-darkRed">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">
             TEAM REGISTRATION
           </h2>
-          <p className="text-carnival-brown text-lg max-w-2xl mx-auto">
+          <p className="text-ai-muted text-lg max-w-2xl mx-auto">
             Register your team for Campus Clash India - India's largest college BGMI tournament
           </p>
         </motion.div>
@@ -95,25 +95,25 @@ const RegistrationForm = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="bg-white rounded-2xl shadow-2xl p-8 border-2 border-carnival-red/10"
+          className="bg-ai-card rounded-2xl shadow-2xl p-8 border border-ai-border"
         >
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
             {/* Team Leader Section */}
-            <div className="bg-carnival-red/5 rounded-xl p-6">
+            <div className="bg-ai-primary/5 rounded-xl p-6">
               <div className="flex items-center gap-3 mb-4">
-                <Users className="w-6 h-6 text-carnival-red" />
-                <h3 className="text-xl font-bold text-carnival-darkRed">Team Leader Details</h3>
+                <Users className="w-6 h-6 text-ai-primary" />
+                <h3 className="text-xl font-bold text-white">Team Leader Details</h3>
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <Label htmlFor="teamLeaderName" className="text-carnival-darkRed font-medium">
+                  <Label htmlFor="teamLeaderName" className="text-white font-medium">
                     Team Leader Name *
                   </Label>
                   <Input
                     id="teamLeaderName"
                     {...register('teamLeaderName')}
-                    className="mt-1 border-carnival-red/20 focus:border-carnival-red"
+                    className="mt-1 border-ai-primary/20 focus:border-ai-primary bg-ai-surface text-white"
                     placeholder="Enter team leader's full name"
                   />
                   {errors.teamLeaderName && (
@@ -122,13 +122,13 @@ const RegistrationForm = () => {
                 </div>
                 
                 <div>
-                  <Label htmlFor="teamLeaderID" className="text-carnival-darkRed font-medium">
+                  <Label htmlFor="teamLeaderID" className="text-white font-medium">
                     Team Leader ID *
                   </Label>
                   <Input
                     id="teamLeaderID"
                     {...register('teamLeaderID')}
-                    className="mt-1 border-carnival-red/20 focus:border-carnival-red"
+                    className="mt-1 border-ai-primary/20 focus:border-ai-primary bg-ai-surface text-white"
                     placeholder="Enter team leader's ID"
                   />
                   {errors.teamLeaderID && (
@@ -139,22 +139,22 @@ const RegistrationForm = () => {
             </div>
 
             {/* Team Players Section */}
-            <div className="bg-carnival-yellow/5 rounded-xl p-6">
+            <div className="bg-ai-secondary/5 rounded-xl p-6">
               <div className="flex items-center gap-3 mb-4">
-                <Gamepad className="w-6 h-6 text-carnival-yellow" />
-                <h3 className="text-xl font-bold text-carnival-darkRed">Team Players</h3>
+                <Gamepad className="w-6 h-6 text-ai-secondary" />
+                <h3 className="text-xl font-bold text-white">Team Players</h3>
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {[1, 2, 3, 4].map((playerNum) => (
                   <div key={playerNum}>
-                    <Label htmlFor={`player${playerNum}ID`} className="text-carnival-darkRed font-medium">
+                    <Label htmlFor={`player${playerNum}ID`} className="text-white font-medium">
                       Player {playerNum} ID *
                     </Label>
                     <Input
                       id={`player${playerNum}ID`}
                       {...register(`player${playerNum}ID` as keyof RegistrationFormData)}
-                      className="mt-1 border-carnival-red/20 focus:border-carnival-red"
+                      className="mt-1 border-ai-primary/20 focus:border-ai-primary bg-ai-surface text-white"
                       placeholder={`Enter Player ${playerNum} ID`}
                     />
                     {errors[`player${playerNum}ID` as keyof typeof errors] && (
@@ -168,22 +168,22 @@ const RegistrationForm = () => {
             </div>
 
             {/* Contact & College Section */}
-            <div className="bg-carnival-brown/5 rounded-xl p-6">
+            <div className="bg-ai-accent/5 rounded-xl p-6">
               <div className="flex items-center gap-3 mb-4">
-                <Trophy className="w-6 h-6 text-carnival-brown" />
-                <h3 className="text-xl font-bold text-carnival-darkRed">Contact & College Details</h3>
+                <Trophy className="w-6 h-6 text-ai-accent" />
+                <h3 className="text-xl font-bold text-white">Contact & College Details</h3>
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <Label htmlFor="mailID" className="text-carnival-darkRed font-medium">
+                  <Label htmlFor="mailID" className="text-white font-medium">
                     Email ID *
                   </Label>
                   <Input
                     id="mailID"
                     type="email"
                     {...register('mailID')}
-                    className="mt-1 border-carnival-red/20 focus:border-carnival-red"
+                    className="mt-1 border-ai-primary/20 focus:border-ai-primary bg-ai-surface text-white"
                     placeholder="Enter email address"
                   />
                   {errors.mailID && (
@@ -192,13 +192,13 @@ const RegistrationForm = () => {
                 </div>
                 
                 <div>
-                  <Label htmlFor="whatsappNumber" className="text-carnival-darkRed font-medium">
+                  <Label htmlFor="whatsappNumber" className="text-white font-medium">
                     WhatsApp Number *
                   </Label>
                   <Input
                     id="whatsappNumber"
                     {...register('whatsappNumber')}
-                    className="mt-1 border-carnival-red/20 focus:border-carnival-red"
+                    className="mt-1 border-ai-primary/20 focus:border-ai-primary bg-ai-surface text-white"
                     placeholder="Enter WhatsApp number"
                   />
                   {errors.whatsappNumber && (
@@ -207,13 +207,13 @@ const RegistrationForm = () => {
                 </div>
                 
                 <div>
-                  <Label htmlFor="collegeName" className="text-carnival-darkRed font-medium">
+                  <Label htmlFor="collegeName" className="text-white font-medium">
                     College Name *
                   </Label>
                   <Input
                     id="collegeName"
                     {...register('collegeName')}
-                    className="mt-1 border-carnival-red/20 focus:border-carnival-red"
+                    className="mt-1 border-ai-primary/20 focus:border-ai-primary bg-ai-surface text-white"
                     placeholder="Enter college name"
                   />
                   {errors.collegeName && (
@@ -222,16 +222,16 @@ const RegistrationForm = () => {
                 </div>
                 
                 <div>
-                  <Label htmlFor="state" className="text-carnival-darkRed font-medium">
+                  <Label htmlFor="state" className="text-white font-medium">
                     State *
                   </Label>
                   <Select onValueChange={(value) => setValue('state', value)}>
-                    <SelectTrigger className="mt-1 border-carnival-red/20 focus:border-carnival-red">
+                    <SelectTrigger className="mt-1 border-ai-primary/20 focus:border-ai-primary bg-ai-surface text-white">
                       <SelectValue placeholder="Select your state" />
                     </SelectTrigger>
-                    <SelectContent>
+                    <SelectContent className="bg-ai-surface border-ai-border">
                       {indianStates.map((state) => (
-                        <SelectItem key={state} value={state}>
+                        <SelectItem key={state} value={state} className="text-white hover:bg-ai-hover">
                           {state}
                         </SelectItem>
                       ))}
@@ -253,7 +253,7 @@ const RegistrationForm = () => {
               <Button
                 type="submit"
                 disabled={isSubmitting}
-                className="bg-carnival-red hover:bg-carnival-darkRed text-white px-12 py-4 rounded-full font-bold text-lg transition-all duration-300 flex items-center gap-3 mx-auto"
+                className="bg-gradient-to-r from-ai-primary to-ai-secondary hover:from-ai-secondary hover:to-ai-primary text-white px-12 py-4 rounded-full font-bold text-lg transition-all duration-300 flex items-center gap-3 mx-auto"
               >
                 {isSubmitting ? (
                   <>
@@ -278,7 +278,7 @@ const RegistrationForm = () => {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="mt-8 text-center"
         >
-          <p className="text-carnival-brown text-sm">
+          <p className="text-ai-muted text-sm">
             By registering, you agree to our tournament rules and fair play policy.
           </p>
         </motion.div>

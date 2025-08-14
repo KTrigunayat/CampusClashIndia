@@ -33,7 +33,7 @@ const Index = () => {
   if (!mounted) return null;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-carnival-cream via-white to-carnival-cream/50">
+    <div className="min-h-screen bg-gradient-to-br from-ai-darker via-ai-dark to-ai-light">
       <Navigation />
       
       <main className="overflow-hidden">
@@ -89,13 +89,13 @@ const Index = () => {
       />
 
       <PrivacyPolicyModal 
-        open={privacyPolicyOpen} 
-        onOpenChange={setPrivacyPolicyOpen} 
+        open={privacyPolicyOpen}
+        onOpenChange={setPrivacyPolicyOpen}
       />
       
       <TermsOfServiceModal 
-        open={termsOfServiceOpen} 
-        onOpenChange={setTermsOfServiceOpen} 
+        open={termsOfServiceOpen}
+        onOpenChange={setTermsOfServiceOpen}
       />
     </div>
   );

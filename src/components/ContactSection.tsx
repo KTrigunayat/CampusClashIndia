@@ -1,95 +1,77 @@
 import { motion } from 'framer-motion';
 import { MessageSquare, Mail, Phone, Instagram } from 'lucide-react';
-import { Button } from './ui/button';
 
 const ContactSection = () => {
-  const handleWhatsAppClick = () => {
-    window.open('https://wa.me/919638605301', '_blank');
-  };
-
-  const handleEmailClick = () => {
-    window.location.href = 'mailto:info@campusclashindia.com';
-  };
-
-  const handlePhoneClick = () => {
-    window.location.href = 'tel:+919638605301';
-  };
-
-  const handleInstagramClick = () => {
-    window.open('https://www.instagram.com/campusclashindia', '_blank');
-  };
+  const contactMethods = [
+    {
+      icon: <MessageSquare className="w-8 h-8" />,
+      title: "WhatsApp",
+      description: "Quick responses",
+      action: "Chat Now",
+      href: "https://wa.me/919638605301",
+      color: "text-ai-primary"
+    },
+    {
+      icon: <Mail className="w-8 h-8" />,
+      title: "Email",
+      description: "Detailed inquiries",
+      action: "Send Email",
+      href: "mailto:vizphoria@atriauniversity.edu.in",
+      color: "text-ai-secondary"
+    },
+    {
+      icon: <Phone className="w-8 h-8" />,
+      title: "Phone",
+      description: "Direct support",
+      action: "Call Now",
+      href: "tel:+916378130528",
+      color: "text-ai-accent"
+    },
+    {
+      icon: <Instagram className="w-8 h-8" />,
+      title: "Instagram",
+      description: "Latest updates",
+      action: "Follow Us",
+      href: "https://www.instagram.com/vizphoria.fest",
+      color: "text-ai-primary"
+    }
+  ];
 
   return (
-    <section className="py-20 bg-gradient-to-b from-background to-background/95">
-      <div className="container">
-        <h2 className="text-4xl font-bold text-center mb-12 gradient-text">
-          Contact Us
-        </h2>
+    <section id="contact" className="py-20 bg-gradient-to-b from-ai-dark to-ai-light">
+      <div className="container mx-auto px-6">
+        <motion.h2 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-4xl font-bold text-center mb-12 text-white gradient-text"
+        >
+          Get In Touch
+        </motion.h2>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            className="glass-card p-6 rounded-lg text-center"
-          >
-            <Button
-              variant="ghost"
-              onClick={handleWhatsAppClick}
-              className="w-full h-full flex flex-col items-center gap-4 hover:bg-carnival-darkRed/10"
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+          {contactMethods.map((method, index) => (
+            <motion.a
+              key={method.title}
+              href={method.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.1 }}
+              whileHover={{ scale: 1.05 }}
+              className="w-full h-full flex flex-col items-center gap-4 hover:bg-ai-hover/10 bg-ai-card p-6 rounded-xl border border-ai-border transition-all duration-300 card-hover"
             >
-              <MessageSquare className="w-8 h-8 text-carnival-red" />
-              <p className="text-sm text-muted-foreground">+91 96386 05301</p>
-            </Button>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="glass-card p-6 rounded-lg text-center"
-          >
-            <Button
-              variant="ghost"
-              onClick={handleEmailClick}
-              className="w-full h-full flex flex-col items-center gap-4 hover:bg-carnival-darkRed/10"
-            >
-              <Mail className="w-8 h-8 text-carnival-red" />
-              <p className="text-sm text-muted-foreground">info@campusclashindia.com</p>
-            </Button>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-            className="glass-card p-6 rounded-lg text-center"
-          >
-            <Button
-              variant="ghost"
-              onClick={handlePhoneClick}
-              className="w-full h-full flex flex-col items-center gap-4 hover:bg-carnival-darkRed/10"
-            >
-              <Phone className="w-8 h-8 text-carnival-red" />
-              <p className="text-sm text-muted-foreground">+91 96386 05301</p>
-            </Button>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
-            className="glass-card p-6 rounded-lg text-center"
-          >
-            <Button
-              variant="ghost"
-              onClick={handleInstagramClick}
-              className="w-full h-full flex flex-col items-center gap-4 hover:bg-carnival-darkRed/10"
-            >
-              <Instagram className="w-8 h-8 text-carnival-red" />
-              <p className="text-sm text-muted-foreground">@campusclashindia</p>
-            </Button>
-          </motion.div>
+              <div className={`${method.color} transition-colors duration-300`}>
+                {method.icon}
+              </div>
+              <div className="text-center">
+                <h3 className="text-xl font-bold text-white mb-2">{method.title}</h3>
+                <p className="text-ai-muted text-sm mb-4">{method.description}</p>
+                <span className="text-ai-primary font-semibold">{method.action}</span>
+              </div>
+            </motion.a>
+          ))}
         </div>
       </div>
     </section>
