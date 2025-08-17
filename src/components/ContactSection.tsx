@@ -8,7 +8,7 @@ const ContactSection = () => {
       title: "WhatsApp",
       description: "Quick responses",
       action: "Chat Now",
-      href: "https://wa.me/919638605301",
+      href: "https://wa.me/917816063256",
       color: "text-ai-primary"
     },
     {
@@ -16,7 +16,7 @@ const ContactSection = () => {
       title: "Email",
       description: "Detailed inquiries",
       action: "Send Email",
-      href: "mailto:vizphoria@atriauniversity.edu.in",
+      href: "mailto:kshitiz@dncesports.in",
       color: "text-ai-secondary"
     },
     {
@@ -24,7 +24,7 @@ const ContactSection = () => {
       title: "Phone",
       description: "Direct support",
       action: "Call Now",
-      href: "tel:+916378130528",
+      href: "tel:+917816063256",
       color: "text-ai-accent"
     },
     {
@@ -32,19 +32,19 @@ const ContactSection = () => {
       title: "Instagram",
       description: "Latest updates",
       action: "Follow Us",
-      href: "https://www.instagram.com/vizphoria.fest",
+      href: "https://www.instagram.com/dnc_esports_india",
       color: "text-ai-primary"
     }
   ];
 
   return (
-    <section id="contact" className="py-20 bg-gradient-to-b from-ai-dark to-ai-light">
+    <section id="contact" className="py-20 bg-[#111112]">
       <div className="container mx-auto px-6">
         <motion.h2 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-4xl font-bold text-center mb-12 text-white gradient-text"
+          className="text-4xl font-extrabold text-center mb-12 text-[#FFB300] uppercase drop-shadow-lg tracking-wide"
         >
           Get In Touch
         </motion.h2>
@@ -60,15 +60,15 @@ const ContactSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
               whileHover={{ scale: 1.05 }}
-              className="w-full h-full flex flex-col items-center gap-4 hover:bg-ai-hover/10 bg-ai-card p-6 rounded-xl border border-ai-border transition-all duration-300 card-hover"
+              className="w-full h-full flex flex-col items-center gap-4 hover:bg-[#18181b] bg-[#18181b] p-6 rounded-xl border-2 border-[#232323] hover:border-[#FFB300] transition-all duration-300 card-hover"
             >
-              <div className={`${method.color} transition-colors duration-300`}>
+              <div className="text-[#FF6A00] transition-colors duration-300">
                 {method.icon}
               </div>
               <div className="text-center">
-                <h3 className="text-xl font-bold text-white mb-2">{method.title}</h3>
-                <p className="text-ai-muted text-sm mb-4">{method.description}</p>
-                <span className="text-ai-primary font-semibold">{method.action}</span>
+                <h3 className="text-xl font-bold text-[#FFB300] mb-2">{method.title}</h3>
+                <p className="text-[#e6e6e6] text-sm mb-4">{method.description}</p>
+                <span className="text-[#FF6A00] font-semibold">{method.action}</span>
               </div>
             </motion.a>
           ))}

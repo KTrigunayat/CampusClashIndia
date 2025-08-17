@@ -22,28 +22,31 @@ export default {
         "300%": "300%",
       },
       colors: {
+        // Base color definitions
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
-        // Dark theme color scheme inspired by AI for Students website
+        
+        // Custom color scheme
         ai: {
-          primary: "#6366F1", // Indigo primary
-          secondary: "#8B5CF6", // Purple secondary
-          accent: "#06B6D4", // Cyan accent
-          dark: "#0A0A0A", // Very dark background
-          darker: "#000000", // Pure black
-          light: "#1A1A1A", // Dark gray
-          surface: "#1E1E1E", // Card surface
-          muted: "#6B7280", // Muted text
-          border: "#2D2D2D", // Dark borders
-          card: "#1F1F1F", // Card background
-          hover: "#2A2A2A", // Hover state
+          primary: "#F97316",
+          secondary: "#FBBF24",
+          accent: "#F59E0B",
+          dark: "#0A0A0A",
+          darker: "#000000",
+          light: "#1A1A1A",
+          surface: "#1E1E1E",
+          muted: "#6B7280",
+          border: "#2D2D2D",
+          card: "#1F1F1F",
+          hover: "#2A2A2A",
+          // Gradient configurations
           gradient: {
-            from: "#6366F1",
-            via: "#8B5CF6", 
-            to: "#06B6D4"
+            from: "#F97316",
+            via: "#F59E0B",
+            to: "#FBBF24"
           },
           darkGradient: {
             from: "#0A0A0A",
@@ -105,10 +108,10 @@ export default {
         },
         glow: {
           "0%, 100%": { 
-            boxShadow: "0 0 5px rgba(99, 102, 241, 0.5), 0 0 20px rgba(139, 92, 246, 0.3)" 
+            boxShadow: "0 0 5px rgba(249, 115, 22, 0.5), 0 0 20px rgba(245, 158, 11, 0.3)" 
           },
           "50%": { 
-            boxShadow: "0 0 10px rgba(99, 102, 241, 0.8), 0 0 30px rgba(139, 92, 246, 0.5)" 
+            boxShadow: "0 0 10px rgba(249, 115, 22, 0.8), 0 0 30px rgba(245, 158, 11, 0.5)" 
           }
         },
         parallax: {
@@ -138,8 +141,8 @@ export default {
       },
       backgroundImage: {
         "ai-pattern": "url('/carnival-pattern.svg')",
-        "hero-gradient": "linear-gradient(135deg, #6366F1 0%, #8B5CF6 50%, #06B6D4 100%)",
-        "ai-gradient": "linear-gradient(135deg, #6366F1 0%, #8B5CF6 100%)",
+        "hero-gradient": "linear-gradient(135deg, #F97316 0%, #F59E0B 50%, #FBBF24 100%)",
+        "ai-gradient": "linear-gradient(135deg, #F97316 0%, #F59E0B 100%)",
         "tech-gradient": "linear-gradient(135deg, #0A0A0A 0%, #1A1A1A 100%)",
         "dark-gradient": "linear-gradient(135deg, #000000 0%, #0A0A0A 50%, #1A1A1A 100%)",
       },

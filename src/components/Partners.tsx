@@ -4,47 +4,21 @@ import { Building2, MapPin, Users } from 'lucide-react';
 const Partners = () => {
   // Placeholder data for 35 partner colleges - you can replace with actual data
   const partners = [
-    { name: "IIT Kharagpur", city: "Kharagpur", logo: "/placeholder-college.png" },
-    { name: "IIT Bombay", city: "Mumbai", logo: "/placeholder-college.png" },
-    { name: "IIT Delhi", city: "Delhi", logo: "/placeholder-college.png" },
-    { name: "IIT Madras", city: "Chennai", logo: "/placeholder-college.png" },
-    { name: "IIT Kanpur", city: "Kanpur", logo: "/placeholder-college.png" },
-    { name: "BITS Pilani", city: "Pilani", logo: "/placeholder-college.png" },
-    { name: "NIT Trichy", city: "Tiruchirappalli", logo: "/placeholder-college.png" },
-    { name: "NIT Surathkal", city: "Mangalore", logo: "/placeholder-college.png" },
-    { name: "DTU Delhi", city: "Delhi", logo: "/placeholder-college.png" },
-    { name: "NSUT Delhi", city: "Delhi", logo: "/placeholder-college.png" },
-    { name: "VIT Vellore", city: "Vellore", logo: "/placeholder-college.png" },
-    { name: "SRM Chennai", city: "Chennai", logo: "/placeholder-college.png" },
-    { name: "Manipal University", city: "Manipal", logo: "/placeholder-college.png" },
-    { name: "Amrita University", city: "Coimbatore", logo: "/placeholder-college.png" },
-    { name: "Thapar University", city: "Patiala", logo: "/placeholder-college.png" },
-    { name: "PES University", city: "Bangalore", logo: "/placeholder-college.png" },
-    { name: "RVCE Bangalore", city: "Bangalore", logo: "/placeholder-college.png" },
-    { name: "BMSCE Bangalore", city: "Bangalore", logo: "/placeholder-college.png" },
-    { name: "MSRIT Bangalore", city: "Bangalore", logo: "/placeholder-college.png" },
-    { name: "PICT Pune", city: "Pune", logo: "/placeholder-college.png" },
-    { name: "COEP Pune", city: "Pune", logo: "/placeholder-college.png" },
-    { name: "VJTI Mumbai", city: "Mumbai", logo: "/placeholder-college.png" },
-    { name: "SPIT Mumbai", city: "Mumbai", logo: "/placeholder-college.png" },
-    { name: "DJ Sanghvi Mumbai", city: "Mumbai", logo: "/placeholder-college.png" },
-    { name: "MIT Manipal", city: "Manipal", logo: "/placeholder-college.png" },
-    { name: "NIT Warangal", city: "Warangal", logo: "/placeholder-college.png" },
-    { name: "NIT Calicut", city: "Calicut", logo: "/placeholder-college.png" },
-    { name: "NIT Rourkela", city: "Rourkela", logo: "/placeholder-college.png" },
-    { name: "NIT Jamshedpur", city: "Jamshedpur", logo: "/placeholder-college.png" },
-    { name: "NIT Durgapur", city: "Durgapur", logo: "/placeholder-college.png" },
-    { name: "NIT Silchar", city: "Silchar", logo: "/placeholder-college.png" },
-    { name: "NIT Hamirpur", city: "Hamirpur", logo: "/placeholder-college.png" },
-    { name: "NIT Srinagar", city: "Srinagar", logo: "/placeholder-college.png" },
-    { name: "NIT Patna", city: "Patna", logo: "/placeholder-college.png" },
-    { name: "NIT Raipur", city: "Raipur", logo: "/placeholder-college.png" },
-    { name: "NIT Agartala", city: "Agartala", logo: "/placeholder-college.png" },
-    { name: "NIT Puducherry", city: "Puducherry", logo: "/placeholder-college.png" },
-    { name: "NIT Goa", city: "Goa", logo: "/placeholder-college.png" },
-    { name: "NIT Uttarakhand", city: "Uttarakhand", logo: "/placeholder-college.png" },
-    { name: "NIT Manipur", city: "Manipur", logo: "/placeholder-college.png" },
-    { name: "NIT Meghalaya", city: "Meghalaya", logo: "/placeholder-college.png" },
+    { name: "IIT Roorke", city: "Roorke", logo: "/placeholder-college.png" },
+    { name: "IISER Mohali", city: "Mohali", logo: "/placeholder-college.png" },
+    { name: "IISER Kolkata", city: "Kolkata", logo: "/placeholder-college.png" },
+    { name: "FEM", city: "Chennai", logo: "/placeholder-college.png" },
+    { name: "IIIT Bhagalpur", city: "Kanpur", logo: "/placeholder-college.png" },
+    { name: "BIT Mesra", city: "Pilani", logo: "/placeholder-college.png" },
+    { name: "BIT Sindra", city: "Tiruchirappalli", logo: "/placeholder-college.png" },
+    { name: "IEM", city: "Mangalore", logo: "/placeholder-college.png" },
+    { name: "XIMB", city: "Delhi", logo: "/placeholder-college.png" },
+    { name: "BIT Deoghar", city: "Delhi", logo: "/placeholder-college.png" },
+    { name: "IIT Indore", city: "Vellore", logo: "/placeholder-college.png" },
+    { name: "GB Pant DSU Delhi", city: "Chennai", logo: "/placeholder-college.png" },
+    { name: "NIIT University", city: "Manipal", logo: "/placeholder-college.png" },
+    { name: "Artemisia College", city: "Coimbatore", logo: "/placeholder-college.png" },
+    { name: "Galgotias University", city: "Patiala", logo: "/placeholder-college.png" },
   ];
 
   return (
@@ -110,7 +84,7 @@ const Partners = () => {
             Want your college to be a partner? Contact us!
           </p>
           <a 
-            href="mailto:partners@campusclashindia.com"
+            href="mailto:kshitiz@dncesports.in"
             className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-ai-primary to-ai-secondary text-white rounded-full transition-all duration-300 font-medium hover:from-ai-secondary hover:to-ai-primary"
           >
             Become a Partner College

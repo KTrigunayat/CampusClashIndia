@@ -3,9 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Download, Shield, Users, Trophy, Gamepad, Clock } from 'lucide-react';
 
 const RulesAndFormat = () => {
-  const handleDownloadRules = () => {
-    window.open('https://drive.google.com/file/d/15pApywfal_lzKUeztTh4EYFApSP8IHzE/view?usp=drive_link', '_blank');
-  };
+  const handleDownloadRules = undefined;
 
   const rules = [
     {
@@ -109,11 +107,15 @@ const RulesAndFormat = () => {
           className="text-center mt-12"
         >
           <Button
-            onClick={handleDownloadRules}
+            asChild
             className="bg-gradient-to-r from-ai-primary to-ai-secondary hover:from-ai-secondary hover:to-ai-primary text-white px-8 py-4 rounded-full font-bold text-lg transition-all duration-300 flex items-center gap-3 mx-auto"
           >
-            <Download className="w-5 h-5" />
-            Download Complete Rulebook
+            <a href="RuleBook.pdf" download="CampusClashIndia_Rulebook.pdf">
+              <span className="inline-flex items-center gap-3">
+                <Download className="w-5 h-5" />
+                Download Complete Rulebook
+              </span>
+            </a>
           </Button>
         </motion.div>
       </div>

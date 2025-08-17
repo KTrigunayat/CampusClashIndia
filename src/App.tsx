@@ -31,7 +31,7 @@ const Index = lazy(() => import("./pages/Index"));
 const Loading = () => (
   <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-ai-darker to-ai-dark">
     <div className="animate-pulse text-ai-primary text-2xl font-bold">
-      Loading Vizphoria...
+      Welcome to Campus Clash India
     </div>
   </div>
 );

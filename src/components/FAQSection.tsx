@@ -37,11 +37,11 @@ const FAQSection = () => {
   ];
 
   const handleContactClick = () => {
-    window.open('https://wa.me/919638605301', '_blank');
+    window.open('https://wa.me/917816063256', '_blank');
   };
 
   return (
-    <section id="faq" className="py-20 bg-gradient-to-b from-ai-light to-ai-dark">
+    <section id="faq" className="py-20 bg-[#111112]">
       <div className="container mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -49,11 +49,12 @@ const FAQSection = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">
+          <h2 className="text-3xl md:text-4xl font-extrabold text-center mb-4 text-[#FFB300] uppercase drop-shadow-lg tracking-wide">
             Frequently Asked Questions
           </h2>
-          <p className="text-ai-muted text-lg max-w-2xl mx-auto">
-            Find answers to common questions about Campus Clash India tournament
+          <div className="w-24 h-1 bg-gradient-to-r from-[#FF6A00] to-[#FFB300] mx-auto mb-6 rounded-full"></div>
+          <p className="text-[#e6e6e6] text-center max-w-3xl mx-auto mb-12 text-lg">
+            Find answers to common questions about the tournament
           </p>
         </motion.div>
 
@@ -66,13 +67,16 @@ const FAQSection = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
               >
-                <AccordionItem value={`item-${index}`} className="bg-ai-card/80 backdrop-blur-sm rounded-lg border border-ai-border overflow-hidden">
-                  <AccordionTrigger className="px-6 py-4 text-left">
-                    <span className="text-white font-medium group-hover:text-ai-primary transition-colors">
+                <AccordionItem 
+                  value={`item-${index}`} 
+                  className="bg-[#18181b] backdrop-blur-sm border-2 border-[#232323] rounded-xl overflow-hidden transition-all duration-300 hover:bg-[#18181b]/80 hover:border-[#FFB300]"
+                >
+                  <AccordionTrigger className="px-6 py-5 text-left group hover:bg-[#18181b]/60 transition-colors">
+                    <span className="text-[#FFB300] font-medium text-lg group-hover:text-[#FF6A00] transition-colors duration-300">
                       {faq.question}
                     </span>
                   </AccordionTrigger>
-                  <AccordionContent className="px-6 pb-4 text-ai-muted">
+                  <AccordionContent className="px-6 pb-5 text-[#e6e6e6]">
                     {faq.answer}
                   </AccordionContent>
                 </AccordionItem>
@@ -87,14 +91,12 @@ const FAQSection = () => {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="text-center mt-12"
         >
-          <p className="text-ai-muted mb-6">
+          <p className="text-[#e6e6e6] mt-4">
             Still have questions? We're here to help!
           </p>
           <Button
             onClick={handleContactClick}
-            className="bg-gradient-to-r from-ai-primary to-ai-secondary hover:from-ai-secondary hover:to-ai-primary text-white group
-              px-8 py-4 rounded-full font-bold text-lg transition-all duration-300 flex items-center gap-3 mx-auto
-              hover:scale-105 hover:shadow-lg hover:shadow-ai-primary/20"
+            className="bg-gradient-to-r from-[#FFB300] to-[#FF6A00] hover:from-[#FF6A00] hover:to-[#FFB300] text-black px-8 py-4 rounded-full font-bold text-lg transition-all duration-300 flex items-center gap-3 mx-auto hover:scale-105 hover:shadow-lg hover:shadow-[#FFB300]/30"
           >
             <MessageCircle className="w-5 h-5" />
             Contact Support

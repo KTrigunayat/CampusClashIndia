@@ -13,7 +13,7 @@ const Navigation = () => {
   const isMobile = useIsMobile();
   
   const handleScroll = useCallback(() => {
-    const sections = ['hero', 'tournament', 'stages', 'colleges', 'timeline', 'gallery', 'rules', 'registration', 'faq'];
+    const sections = ['hero', 'tournament', 'stages', 'colleges', 'timeline', 'rules', 'registration', 'faq'];
     const scrollPosition = window.scrollY;
 
     setIsScrolled(scrollPosition > 50);
@@ -77,17 +77,25 @@ const Navigation = () => {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-gradient-to-r from-ai-primary/90 to-ai-secondary/90 backdrop-blur-md shadow-lg' : 'bg-gradient-to-r from-ai-primary/95 to-ai-secondary/95'
+        isScrolled 
+          ? 'bg-[#18181b]/95 backdrop-blur-md shadow-lg border-b border-[#FFB300]/20' 
+          : 'bg-[#111112]/95 border-b border-[#232323]'
       }`}
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16 sm:h-20">
-          <motion.span 
-            className="text-white text-xl sm:text-2xl font-bold"
+          <motion.a
+            href="/"
+            className="flex items-center gap-3"
             whileHover={{ scale: 1.05 }}
           >
-            Campus Clash India
-          </motion.span>
+            <img
+              src="/cci-logo.png"
+              alt="Campus Clash India"
+              className="h-14 sm:h-16 w-auto"
+            />
+            <span className="sr-only">Campus Clash India</span>
+          </motion.a>
           
           <Button
             variant="ghost"
@@ -103,13 +111,12 @@ const Navigation = () => {
           </Button>
 
           <div className="hidden sm:flex space-x-6 md:space-x-8">
-            {[
+            {[ 
               { id: 'hero', label: 'Home' },
               { id: 'tournament', label: 'Tournament' },
               { id: 'stages', label: 'Stages' },
               { id: 'colleges', label: 'Colleges' },
               { id: 'timeline', label: 'Timeline' },
-              { id: 'gallery', label: 'Gallery' },
               { id: 'rules', label: 'Rules' },
               { id: 'registration', label: 'Register' },
               { id: 'faq', label: 'FAQ' },
@@ -117,8 +124,8 @@ const Navigation = () => {
               <motion.button
                 key={id}
                 onClick={() => handleNavClick(id)}
-                className={`relative text-white hover:text-ai-accent transition-colors text-sm md:text-base
-                  ${activeSection === id ? 'font-bold' : 'font-medium'}`}
+                className={`relative transition-all duration-300 text-base font-semibold px-2 py-1 rounded-md
+                  ${activeSection === id ? 'text-[#FFB300] font-extrabold bg-gradient-to-r from-[#18181b] to-[#232323] shadow-[0_0_10px_#FFB30055]' : 'text-[#e6e6e6] hover:text-[#FFB300] hover:bg-[#18181b]/60'}`}
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -126,7 +133,7 @@ const Navigation = () => {
                 {activeSection === id && (
                   <motion.div
                     layoutId="activeSection"
-                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-ai-accent"
+                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-[#FFB300] shadow-[0_0_10px_#FFB300bb] rounded-full"
                     initial={false}
                     transition={{ type: "spring", stiffness: 380, damping: 30 }}
                   />
@@ -143,7 +150,7 @@ const Navigation = () => {
             opacity: isMenuOpen ? 1 : 0
           }}
           transition={{ duration: 0.3 }}
-          className={`sm:hidden overflow-hidden bg-white/10 rounded-b-lg ${
+          className={`sm:hidden overflow-hidden bg-[#18181b]/95 backdrop-blur-sm border-b border-l border-r border-[#232323] rounded-b-lg ${
             isMenuOpen ? 'pb-4' : ''
           }`}
         >
@@ -154,7 +161,6 @@ const Navigation = () => {
               { id: 'stages', label: 'Stages' },
               { id: 'colleges', label: 'Colleges' },
               { id: 'timeline', label: 'Timeline' },
-              { id: 'gallery', label: 'Gallery' },
               { id: 'rules', label: 'Rules' },
               { id: 'registration', label: 'Register' },
               { id: 'faq', label: 'FAQ' },
@@ -162,9 +168,9 @@ const Navigation = () => {
               <motion.button
                 key={id}
                 onClick={() => handleNavClick(id)}
-                className={`text-white hover:text-ai-accent transition-colors text-left py-3 px-4 rounded-md
-                  ${activeSection === id ? 'font-bold bg-white/20' : 'font-medium'}
-                  active:bg-white/30 touch-manipulation`}
+                className={`text-base font-semibold py-3 px-4 rounded-md transition-all duration-200 text-left
+                  ${activeSection === id ? 'text-[#FFB300] font-extrabold bg-[#232323]' : 'text-[#e6e6e6] hover:text-[#FFB300] hover:bg-[#18181b]/60'}
+                  active:bg-[#18181b]/80 touch-manipulation`}
                 whileTap={{ scale: 0.98 }}
               >
                 {label}

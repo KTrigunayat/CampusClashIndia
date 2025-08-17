@@ -1,8 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Trophy, Target, Gamepad, Map, Users, Award, Calendar } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { toast } from 'sonner';
+import { Trophy, Target, Gamepad, Users } from 'lucide-react';
 import EventCard from './EventCard';
 import {
   Card,
@@ -19,16 +17,16 @@ const categories = [
     description: "District-level online qualifiers with anti-cheat protection and two phases",
     events: [
       {
-        title: "Phase 1 (District Level)",
-        description: "10–20 Sep • Single Match Elimination • 250+ colleges • 10,000+ teams • Groups of 20 • Top 2 → Phase 2",
-        date: "Online",
+        title: "Online College Qualifiers Phase -1",
+        description: "Single Match Elimination • Top 2 teams per group → Phase 2",
+        date: "10–20 Sep",
         registrationFee: "FREE",
         prizeMoney: "Qualify to Phase 2"
       },
       {
-        title: "Phase 2 (District Level)",
-        description: "20–29 Sep • 2 Custom Room Matches • Groups of 20 • Top 4 → State Level",
-        date: "Online",
+        title: "Online College Qualifiers Phase -2",
+        description: "2 Custom Room Matches • Top 4 teams per group → State Level",
+        date: "20-29 Sep",
         registrationFee: "FREE",
         prizeMoney: "Qualify to State Level"
       }
@@ -46,11 +44,11 @@ const categories = [
         description: "LAN setup with on-ground administrators • Spectator area",
         date: "20 Aug – 15 Sep",
         registrationFee: "Qualified Teams",
-        prizeMoney: "Top 4 → Regionals"
+        prizeMoney: "Top 4 teams per college → State Level"
       },
       {
         title: "Campus Finals",
-        description: "On-site qualifiers to determine campus champions",
+        description: "On-site qualifiers to determine campus champions, Are you the best team?",
         date: "Across India",
         registrationFee: "Free Entry for Spectators",
         prizeMoney: "Campus Champions"
@@ -62,18 +60,25 @@ const categories = [
   },
   {
     title: "Regional Playoffs",
-    description: "1–19 Oct • State → Regionals → National Semi-finals",
+    description: "State → Regionals → National Semi-finals",
     events: [
       {
         title: "State Level (Online)",
-        description: "1–8 Oct • 3 Custom Room Matches • Top 5 per group → Regionals",
+        description: "3 Custom Room Matches • Top 5 teams per group → Regionals",
         date: "Online",
         registrationFee: "Qualified Teams",
         prizeMoney: "Advance to Regionals"
       },
       {
-        title: "Regionals & Semi-finals (Online)",
-        description: "9–15 Oct Regionals: 4 Matches • Top 6 → 15–19 Oct National Semi-finals: 6 Matches • Top 15 → Nationals Finals",
+        title: "Regional Level (Online)",
+        description: "Top 6 teams per group → National Semi-finals",
+        date: "Online Stream",
+        registrationFee: "Qualified Teams",
+        prizeMoney: "Advance to Nationals Finals"
+      },
+      {
+        title: "National Semi-Finals (Online)",
+        description: "Top 6 teams per group → National Semi-finals",
         date: "Online Stream",
         registrationFee: "Qualified Teams",
         prizeMoney: "Advance to Nationals Finals"
@@ -111,46 +116,32 @@ const categories = [
 const EventCategories = () => {
   const [activeCategory, setActiveCategory] = useState('all');
 
-  const handleRegister = () => {
-    const element = document.getElementById('registration');
-    if (!element) {
-      toast.error('Registration section not found');
-      return;
-    }
-    const offset = window.innerWidth < 640 ? 60 : 80;
-    const elementPosition = element.getBoundingClientRect().top;
-    const offsetPosition = elementPosition + window.pageYOffset - offset;
-    window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
-    toast.success('Scrolling to registration form');
-  };
-
   return (
-<<<<<<< HEAD
-    <section id="tournament" className="py-20 bg-gradient-to-b from-ai-dark to-ai-light">
-=======
-    <section id="tournament" className="py-20 bg-gradient-to-b from-white via-white to-carnival-cream/10">
->>>>>>> 730d1faa96d3d205b269fa0740d611f3e1b5b7db
+    <section id="tournament" className="py-20 relative overflow-hidden bg-[#111112]">
+      <div className="absolute inset-0 -z-10">
+        <div className="absolute inset-0 opacity-20" style={{
+          backgroundImage: 'radial-gradient(rgba(255,186,73,0.08) 1px, transparent 1px), radial-gradient(rgba(0,0,0,0.04) 1px, transparent 1px)',
+          backgroundSize: '32px 32px',
+        }} />
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-[#FFB300]/10 blur-3xl" />
+        <div className="absolute bottom-1/3 right-1/4 w-64 h-64 rounded-full bg-[#FF6A00]/10 blur-3xl" />
+      </div>
       <div className="container mx-auto px-6">
-        <motion.h2 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          className="text-4xl font-bold text-center mb-12 text-white gradient-text"
-        >
+        <h2 className="text-3xl md:text-4xl font-extrabold text-center mb-4 text-[#FFB300] uppercase drop-shadow-lg tracking-wide">
           Tournament Structure
-        </motion.h2>
-
+        </h2>
+        <div className="w-24 h-1 bg-gradient-to-r from-[#FF6A00] to-[#FFB300] mx-auto mb-4 rounded-full"></div>
+        <p className="text-[#e6e6e6] text-center max-w-3xl mx-auto text-lg font-medium">
+          Compete in our multi-stage tournament with exciting prizes and recognition
+        </p>
         {/* Category Filter Buttons */}
-        <div className="flex flex-wrap justify-center gap-4 mb-12">
+        <div className="flex flex-wrap justify-center gap-4 mb-12 mt-8">
           {['all', ...categories.map(cat => cat.id)].map((category) => (
             <motion.button
               key={category}
               onClick={() => setActiveCategory(category)}
-              className={`px-6 py-3 rounded-full text-lg font-semibold transition-all duration-300 shadow-lg
-                ${activeCategory === category 
-                  ? 'bg-gradient-to-r from-ai-primary to-ai-secondary text-white scale-105' 
-                  : 'bg-ai-surface text-ai-muted hover:bg-ai-hover hover:text-white border border-ai-border'}`}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              className={`px-6 py-2 rounded-full font-bold uppercase text-base shadow-lg transition-all duration-300 border-2
+                ${activeCategory === category ? 'bg-gradient-to-r from-[#FFB300] to-[#FF6A00] text-black border-[#FFB300] scale-105' : 'bg-[#18181b] text-[#FFB300] border-[#232323] hover:bg-gradient-to-r hover:from-[#FFB300] hover:to-[#FF6A00] hover:text-black hover:border-[#FFB300]'}`}
             >
               {category === 'all' ? 'All Stages' : 
                category === 'online' ? 'Online Qualifiers' :
@@ -171,10 +162,13 @@ const EventCategories = () => {
               className={`${activeCategory === 'all' || activeCategory === category.id ? 'block' : 'hidden'}`}
             >
               <div className="text-center mb-12">
-                <h3 className="text-3xl font-bold text-white mb-4">{category.title}</h3>
-                <p className="text-ai-muted text-lg max-w-2xl mx-auto">{category.description}</p>
+                <h3 className="text-3xl font-bold text-[#FF6A00] mb-4 uppercase drop-shadow tracking-wide">
+                  {category.title}
+                </h3>
+                <p className="text-[#FFB300] text-lg max-w-2xl mx-auto font-semibold">
+                  {category.description}
+                </p>
               </div>
-
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {category.events.map((event, eventIndex) => (
                   <motion.div
@@ -189,7 +183,6 @@ const EventCategories = () => {
                       description={event.description}
                       date={event.date}
                       category={category.id}
-                      onRegister={handleRegister}
                     />
                   </motion.div>
                 ))}

@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Calendar, Music, Theater, Trophy, Ticket } from 'lucide-react';
 
 interface EventCardProps {
@@ -8,10 +7,9 @@ interface EventCardProps {
   description: string;
   date: string;
   category: string;
-  onRegister: () => void;
 }
 
-const EventCard = ({ title, description, date, category, onRegister }: EventCardProps) => {
+const EventCard = ({ title, description, date, category }: EventCardProps) => {
   const getIcon = () => {
     switch (category.toLowerCase()) {
       case 'music':
@@ -31,40 +29,35 @@ const EventCard = ({ title, description, date, category, onRegister }: EventCard
       transition={{ duration: 0.3 }}
       className="group"
     >
-      <Card className="relative overflow-hidden bg-ai-card border border-ai-border shadow-lg group-hover:shadow-2xl transition-all duration-300 h-full">
-        <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-ai-primary/20 to-ai-secondary/20 rounded-bl-full" />
+      <Card className="relative overflow-hidden bg-[#18181b] border-2 border-[#232323] shadow-lg group-hover:shadow-orange-500/30 group-hover:border-[#FFB300] transition-all duration-300 h-full">
+        <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-[#FFB300]/20 to-[#FF6A00]/20 rounded-bl-full" />
         <CardHeader className="relative z-10">
           <div className="flex items-center gap-4">
             <motion.div
               whileHover={{ rotate: 360 }}
               transition={{ duration: 0.5 }}
-              className="p-3 rounded-full bg-gradient-to-r from-ai-primary/20 to-ai-secondary/20 text-ai-primary"
+              className="p-3 rounded-full bg-gradient-to-r from-[#FFB300]/30 to-[#FF6A00]/30 text-[#FF6A00] shadow"
             >
               {getIcon()}
             </motion.div>
             <div>
-              <CardTitle className="text-xl font-bold text-white">{title}</CardTitle>
-              <CardDescription className="flex items-center gap-2 text-ai-muted mt-1">
-                <Calendar className="w-4 h-4" />
+              <CardTitle className="text-xl font-extrabold text-[#FFB300] uppercase drop-shadow">
+                {title}
+              </CardTitle>
+              <CardDescription className="flex items-center gap-2 text-[#FF6A00] mt-1 font-semibold">
+                <Calendar className="w-4 h-4 text-[#FFB300]" />
                 {date}
               </CardDescription>
             </div>
           </div>
         </CardHeader>
         <CardContent className="relative z-10">
-          <p className="text-sm text-ai-muted leading-relaxed">{description}</p>
+          <p className="text-sm text-[#e6e6e6] leading-relaxed font-medium">
+            {description}
+          </p>
         </CardContent>
-        <CardFooter className="relative z-10 bg-gradient-to-r from-ai-surface/50 to-ai-card/50 pt-4">
-          <Button 
-            onClick={onRegister}
-            className="w-full bg-gradient-to-r from-ai-primary to-ai-secondary text-white hover:from-ai-secondary hover:to-ai-primary transition-all duration-300 group-hover:shadow-lg group-hover:shadow-ai-primary/25"
-          >
-            Register Now
-          </Button>
-        </CardFooter>
-        
         {/* Hover effect overlay */}
-        <div className="absolute inset-0 bg-gradient-to-r from-ai-primary/5 to-ai-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#FFB300]/10 to-[#FF6A00]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
       </Card>
     </motion.div>
   );
