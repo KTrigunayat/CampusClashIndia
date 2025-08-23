@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
+import { ArrowUpRight, Copy } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -13,6 +14,8 @@ import { toast } from 'sonner';
 import { Users, Gamepad, Trophy, Send } from 'lucide-react';
 
 // Form validation schema
+const phoneRegex = /^[0-9]{10}$/;
+
 const registrationSchema = z.object({
   teamLeaderName: z.string().min(2, 'Team leader name must be at least 2 characters'),
   teamLeaderID: z.string().min(1, 'Team leader BGMI ID is required'),
@@ -22,8 +25,29 @@ const registrationSchema = z.object({
   player4ID: z.string().min(1, 'Player 4 BGMI ID is required'),
   mailID: z.string().email('Please enter a valid email address'),
   collegeName: z.string().min(2, 'College name must be at least 2 characters'),
-  whatsappNumber: z.string().min(10, 'Please enter a valid WhatsApp number'),
+  whatsappNumber: z.string()
+    .min(10, 'Please enter a valid 10-digit number')
+    .max(10, 'Please enter a valid 10-digit number')
+    .regex(phoneRegex, 'Please enter a valid 10-digit number'),
   state: z.string().min(1, 'Please select your state'),
+  player1Contact: z.string()
+    .min(10, 'Please enter a valid 10-digit number')
+    .max(10, 'Please enter a valid 10-digit number')
+    .regex(phoneRegex, 'Please enter a valid 10-digit number')
+    .optional()
+    .or(z.literal('')),  // Allow empty string
+  player2Contact: z.string()
+    .min(10, 'Please enter a valid 10-digit number')
+    .max(10, 'Please enter a valid 10-digit number')
+    .regex(phoneRegex, 'Please enter a valid 10-digit number')
+    .optional()
+    .or(z.literal('')),  // Allow empty string
+  player3Contact: z.string()
+    .min(10, 'Please enter a valid 10-digit number')
+    .max(10, 'Please enter a valid 10-digit number')
+    .regex(phoneRegex, 'Please enter a valid 10-digit number')
+    .optional()
+    .or(z.literal('')),  // Allow empty string
 });
 
 type RegistrationFormData = z.infer<typeof registrationSchema>;
@@ -35,7 +59,12 @@ const steps = [
   },
   {
     label: 'Players',
-    fields: ['player1ID', 'player2ID', 'player3ID', 'player4ID'],
+    fields: [
+      'player1ID', 'player1Contact',
+      'player2ID', 'player2Contact',
+      'player3ID', 'player3Contact',
+      'player4ID'
+    ],
   },
   {
     label: 'Contact & College',
@@ -45,80 +74,212 @@ const steps = [
 
 const RegistrationForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isStateRedirectOpen, setIsStateRedirectOpen] = useState(false);
-  const [redirectUrl, setRedirectUrl] = useState<string | null>(null);
-  const [redirectState, setRedirectState] = useState<string | null>(null);
   const [step, setStep] = useState(0);
-  
+  const [redirectUrl, setRedirectUrl] = useState('');
+  const [redirectState, setRedirectState] = useState('');
+  const [isStateRedirectOpen, setIsStateRedirectOpen] = useState(false);
+  const [formErrors, setFormErrors] = useState<Record<string, string>>({});
+
   const {
     register,
     handleSubmit,
     formState: { errors },
     setValue,
     watch,
+    reset,
+    trigger
   } = useForm<RegistrationFormData>({
     resolver: zodResolver(registrationSchema),
   });
 
+  // Show loading overlay during submission
+  const renderLoadingOverlay = () => (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm">
+      <div className="p-8 bg-[#1a1a1a] rounded-2xl border border-[#FFB300]/30 text-center max-w-md">
+        <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-[#FFB300] mx-auto mb-4"></div>
+        <h3 className="text-xl font-bold text-[#FFB300] mb-2">Submitting Registration</h3>
+        <p className="text-[#e6e6e6]/80">Please wait while we process your registration...</p>
+      </div>
+    </div>
+  );
+
   const onSubmit = async (data: RegistrationFormData) => {
+    // Reset form errors
+    setFormErrors({});
+    
+    // Additional client-side validation
+    const errors: Record<string, string> = {};
+    
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(data.mailID.trim())) {
+      errors.mailID = 'Please enter a valid email address';
+    }
+    
+    // Validate phone number format (10 digits)
+    const phoneRegex = /^\d{10}$/;
+    if (!phoneRegex.test(data.whatsappNumber.trim())) {
+      errors.whatsappNumber = 'Please enter a valid 10-digit phone number';
+    }
+    
+    // Check for duplicate player IDs
+    const playerIds = [
+      data.teamLeaderID,
+      data.player1ID,
+      data.player2ID,
+      data.player3ID,
+      data.player4ID
+    ].filter(Boolean);
+    
+    const uniqueIds = new Set(playerIds);
+    if (uniqueIds.size < playerIds.length) {
+      errors.playerIDs = 'Player IDs must be unique';
+    }
+    
+    if (Object.keys(errors).length > 0) {
+      setFormErrors(errors);
+      toast.error('Please correct the errors in the form', {
+        duration: 3000
+      });
+      return;
+    }
+    
     setIsSubmitting(true);
+    console.log('Form submission started with validated data:', data);
+
+    // State-specific registration URLs
+    const stateExternalLinks: Record<string, string> = {
+      'Andhra Pradesh': 'https://play.gamecentric.io/tournaments/HATAZEHOXAOCWBG',
+      'Maharashtra': 'https://play.gamecentric.io/tournaments/0APMRI2FVTIY83B',
+      'Tamil Nadu': 'https://play.gamecentric.io/tournaments/0R041U3XFOP9BL4',
+      'Telengana': 'https://play.gamecentric.io/tournaments/DUIOU42TKPHEGSQ',
+      'Kerala': 'https://play.gamecentric.io/tournaments/B5VJJACQGTGMBB3',
+      'Karnataka': 'https://play.gamecentric.io/tournaments/Y2KO2D3MT6E6NAC',
+      'Uttar Pradesh': 'https://play.gamecentric.io/tournaments/2454ZZEGIZN9DGR',
+    };
+
     try {
-      // External registration flow mapping for specific states
-      const stateExternalLinks: Record<string, string> = {
-        'Andhra Pradesh': 'https://play.gamecentric.io/tournaments/HATAZEHOXAOCWBG',
-        'Maharashtra': 'https://play.gamecentric.io/tournaments/0APMRI2FVTIY83B',
-        'Tamil Nadu': 'https://play.gamecentric.io/tournaments/0R041U3XFOP9BL4',
-        'Telangana': 'https://play.gamecentric.io/tournaments/DUIOU42TKPHEGSQ',
-        'Kerala': 'https://play.gamecentric.io/tournaments/B5VJJACQGTGMBB3',
-        'Karnataka': 'https://play.gamecentric.io/tournaments/Y2KO2D3MT6E6NAC',
-        'Uttar Pradesh': 'https://play.gamecentric.io/tournaments/2454ZZEGIZN9DGR',
+      // Prepare registration data
+      const registrationData = {
+        team_leader_name: data.teamLeaderName.trim(),
+        team_leader_id: data.teamLeaderID.trim(),
+        player1_id: data.player1ID.trim(),
+        player2_id: data.player2ID.trim(),
+        player3_id: data.player3ID.trim(),
+        player4_id: data.player4ID.trim(),
+        mail_id: data.mailID.trim().toLowerCase(),
+        college_name: data.collegeName.trim(),
+        whatsapp_number: data.whatsappNumber.trim(),
+        state: data.state,
+        player1_contact_number: data.player1Contact?.trim() || null,
+        player2_contact_number: data.player2Contact?.trim() || null,
+        player3_contact_number: data.player3Contact?.trim() || null,
+        created_at: new Date().toISOString(),
+        updated_at: new Date().toISOString()
       };
 
-      const externalUrl = stateExternalLinks[data.state];
+      // Check for duplicate team leader ID or email
+      const { data: existingRegistration, error: checkError } = await supabase
+        .from('registrations')
+        .select('team_leader_id, mail_id')
+        .or(`team_leader_id.eq.${registrationData.team_leader_id},mail_id.eq.${registrationData.mail_id}`)
+        .maybeSingle();
 
-      // Save registration to Supabase
-      const { error } = await supabase.from('registrations').insert({
-        team_leader_name: data.teamLeaderName,
-        team_leader_id: data.teamLeaderID,
-        player1_id: data.player1ID,
-        player2_id: data.player2ID,
-        player3_id: data.player3ID,
-        player4_id: data.player4ID,
-        mail_id: data.mailID,
-        college_name: data.collegeName,
-        whatsapp_number: data.whatsappNumber,
-        state: data.state,
-      });
-
-      if (error) {
-        const message = error.message?.includes('duplicate')
-          ? 'Duplicate registration detected for email or team leader ID.'
-          : 'Registration failed. Please try again.';
-        toast.error(message);
-        return;
+      if (existingRegistration) {
+        if (existingRegistration.team_leader_id === registrationData.team_leader_id) {
+          throw new Error('This Team Leader ID is already registered. Please use a different ID.');
+        }
+        if (existingRegistration.mail_id === registrationData.mail_id) {
+          throw new Error('This email is already registered. Please use a different email.');
+        }
       }
 
-      toast.success('Team registration submitted successfully!');
+      // Insert new registration
+      const { data: insertResult, error: insertError } = await supabase
+        .from('registrations')
+        .insert(registrationData)
+        .select()
+        .single();
 
-      // Then, if the state requires external completion, show dialog
+      if (insertError) {
+        console.error('Registration failed:', insertError);
+        throw new Error(insertError.message || 'Failed to save registration. Please try again.');
+      }
+
+      console.log('Registration successful:', insertResult);
+      
+      // Check if state requires external registration
+      const externalUrl = stateExternalLinks[data.state];
+      
       if (externalUrl) {
+        // Show state registration dialog
         setRedirectUrl(externalUrl);
         setRedirectState(data.state);
         setIsStateRedirectOpen(true);
-        toast.message('Additional step required', {
-          description: 'Please complete your registration on the official state portal.',
+        
+        // Show toast with action to open the external URL
+        toast.message('Additional Step Required', {
+          description: `Please complete your registration on the ${data.state} portal.`,
+          action: {
+            label: 'Open Portal',
+            onClick: () => window.open(externalUrl, '_blank')
+          },
+          duration: 10000 // Show for 10 seconds
         });
+      } else {
+        // For states without external registration
+        toast.success('Registration Successful!', {
+          description: 'Your team has been registered successfully.',
+          duration: 5000
+        });
+        reset();
       }
+      
+      return insertResult;
+      
     } catch (error) {
-      toast.error('Registration failed. Please try again.');
       console.error('Registration error:', error);
+      const errorMessage = error instanceof Error ? error.message : 'An unexpected error occurred';
+      toast.error('Registration Failed', {
+        description: errorMessage,
+        duration: 5000
+      });
+      throw error;
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  const goNext = () => setStep((s) => Math.min(s + 1, steps.length - 1));
-  const goBack = () => setStep((s) => Math.max(s - 1, 0));
+  const goNext = async () => {
+    // Trigger validation for current step before proceeding
+    const fieldsToValidate = steps[step].fields;
+    const isValid = await trigger(fieldsToValidate as (keyof RegistrationFormData)[]);
+    
+    if (isValid) {
+      setStep((s) => Math.min(s + 1, steps.length - 1));
+      
+      // Scroll to top of form when changing steps
+      const formElement = document.getElementById('registration-form');
+      if (formElement) {
+        formElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    } else {
+      // Show error toast if validation fails
+      toast.error('Please fill in all required fields correctly', {
+        duration: 3000
+      });
+    }
+  };
+  
+  const goBack = () => {
+    setStep((s) => Math.max(s - 1, 0));
+    
+    // Scroll to top of form when changing steps
+    const formElement = document.getElementById('registration-form');
+    if (formElement) {
+      formElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
 
   const indianStates = [
     'Andhra Pradesh', 'Arunachal Pradesh', 'Assam', 'Bihar', 'Chhattisgarh',
@@ -172,7 +333,7 @@ const RegistrationForm = () => {
                 {errors.teamLeaderName && <p className="text-red-500 text-sm mt-1">{errors.teamLeaderName.message}</p>}
               </div>
               <div>
-                <Label htmlFor="teamLeaderID" className="text-[#FFB300] font-medium">Team Leader ID *</Label>
+                <Label htmlFor="teamLeaderID" className="text-[#FFB300] font-medium">Team Leader BGMI ID *</Label>
                 <Input id="teamLeaderID" {...register('teamLeaderID')} className="mt-1 border-[#232323] focus:border-[#FFB300] bg-[#232323] text-[#e6e6e6] placeholder-[#e6e6e6]/50" placeholder="Enter team leader's ID" />
                 {errors.teamLeaderID && <p className="text-red-500 text-sm mt-1">{errors.teamLeaderID.message}</p>}
               </div>
@@ -182,11 +343,37 @@ const RegistrationForm = () => {
           {step === 1 && (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {[1, 2, 3, 4].map((playerNum) => (
-                <div key={playerNum}>
-                  <Label htmlFor={`player${playerNum}ID`} className="text-[#FFB300] font-medium">Player {playerNum} ID *</Label>
-                  <Input id={`player${playerNum}ID`} {...register(`player${playerNum}ID` as keyof RegistrationFormData)} className="mt-1 border-[#232323] focus:border-[#FFB300] bg-[#232323] text-[#e6e6e6] placeholder-[#e6e6e6]/50" placeholder={`Enter Player ${playerNum} ID`} />
-                  {errors[`player${playerNum}ID` as keyof typeof errors] && (
-                    <p className="text-red-500 text-sm mt-1">{errors[`player${playerNum}ID` as keyof typeof errors]?.message}</p>
+                <div key={playerNum} className="space-y-4">
+                  <div>
+                    <Label htmlFor={`player${playerNum}ID`} className="text-[#FFB300] font-medium">Player {playerNum} BGMI ID *</Label>
+                    <Input 
+                      id={`player${playerNum}ID`} 
+                      {...register(`player${playerNum}ID` as keyof RegistrationFormData)} 
+                      className="mt-1 border-[#232323] focus:border-[#FFB300] bg-[#232323] text-[#e6e6e6] placeholder-[#e6e6e6]/50" 
+                      placeholder={`Enter Player ${playerNum} ID`} 
+                    />
+                    {errors[`player${playerNum}ID` as keyof typeof errors] && (
+                      <p className="text-red-500 text-sm mt-1">{errors[`player${playerNum}ID` as keyof typeof errors]?.message}</p>
+                    )}
+                  </div>
+                  {playerNum < 4 && (
+                    <div>
+                      <Label htmlFor={`player${playerNum}Contact`} className="text-[#FFB300] font-medium">
+                        Player {playerNum} Contact Number {playerNum === 1 ? '*' : ''}
+                      </Label>
+                      <Input 
+                        id={`player${playerNum}Contact`} 
+                        {...register(`player${playerNum}Contact` as keyof RegistrationFormData)}
+                        type="tel"
+                        className="mt-1 border-[#232323] focus:border-[#FFB300] bg-[#232323] text-[#e6e6e6] placeholder-[#e6e6e6]/50" 
+                        placeholder={`Enter Player ${playerNum} contact number`}
+                      />
+                      {errors[`player${playerNum}Contact` as keyof typeof errors] && (
+                        <p className="text-red-500 text-sm mt-1">
+                          {errors[`player${playerNum}Contact` as keyof typeof errors]?.message}
+                        </p>
+                      )}
+                    </div>
                   )}
                 </div>
               ))}
@@ -258,9 +445,119 @@ const RegistrationForm = () => {
             By registering, you agree to our tournament rules and fair play policy.
           </p>
         </motion.div>
-        {/* State-specific external registration dialog remains unchanged */}
-        {/* ... existing dialog code ... */}
-      </div>
+        {/* State-specific external registration dialog */}
+        <Dialog open={isStateRedirectOpen} onOpenChange={setIsStateRedirectOpen}>
+          <DialogContent className="bg-gradient-to-b from-[#1a1a1a] to-[#0a0a0a] border-2 border-[#FFB300]/30 text-white max-w-md rounded-2xl overflow-hidden p-0">
+            <div className="relative">
+              {/* Decorative gradient header */}
+              <div className="absolute inset-0 bg-gradient-to-r from-[#FFB300]/10 to-[#FF6A00]/10 rounded-t-lg" />
+              
+              <DialogHeader className="relative z-10 p-8 pb-6">
+                {/* Icon with gradient background */}
+                <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-r from-[#FFB300] to-[#FF6A00] mb-4 shadow-lg">
+                  <Trophy className="h-7 w-7 text-black" />
+                </div>
+                
+                <DialogTitle className="text-2xl md:text-3xl font-bold text-center text-[#FFB300] mb-3">
+                  One More Step!
+                </DialogTitle>
+                
+                <DialogDescription className="text-center text-[#e6e6e6]/90 text-base">
+                  Your team is registered for <span className="text-[#FFB300] font-semibold">Campus Clash India</span>!
+                  <br />
+                  Complete your registration on the {redirectState} portal to secure your spot.
+                </DialogDescription>
+              </DialogHeader>
+            </div>
+            
+            <div className="px-8 pb-8 pt-2 space-y-6">
+              <div className="bg-[#1e1e1e] p-6 rounded-xl border border-[#2a2a2a] shadow-lg">
+                <p className="text-center text-[#e6e6e6] mb-6 text-sm md:text-base">
+                  Click the button below to be redirected to the {redirectState} registration portal.
+                </p>
+                
+                <div className="flex flex-col space-y-4">
+                  {/* Primary CTA Button */}
+                  <a
+                    href={redirectUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group w-full flex items-center justify-center px-6 py-4 bg-gradient-to-r from-[#FFB300] to-[#FF6A00] hover:from-[#FF6A00] hover:to-[#FFB300] text-black font-bold rounded-xl transition-all duration-300 transform hover:scale-[1.02] shadow-lg hover:shadow-[0_0_20px_rgba(255,179,0,0.3)]"
+                    onClick={() => {
+                      // Track the outbound link click
+                      console.log(`Navigating to ${redirectState} portal: ${redirectUrl}`);
+                      setIsStateRedirectOpen(false);
+                    }}
+                  >
+                    <Gamepad className="w-5 h-5 mr-3 transition-transform group-hover:scale-110" />
+                    <span className="text-lg">Go to {redirectState} Portal</span>
+                    <ArrowUpRight className="ml-2 w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  </a>
+                  
+                  {/* Secondary Action */}
+                  <div className="flex flex-col items-center space-y-2 pt-2">
+                    <p className="text-xs text-[#e6e6e6]/70 text-center">
+                      You can also copy this link to open later:
+                    </p>
+                    <div className="w-full flex items-center bg-[#2a2a2a] rounded-lg p-2 pr-1">
+                      <input
+                        type="text"
+                        readOnly
+                        value={redirectUrl}
+                        className="flex-1 bg-transparent text-xs text-[#e6e6e6] truncate p-1 outline-none"
+                        onClick={(e) => (e.target as HTMLInputElement).select()}
+                      />
+                      <button
+                        onClick={() => {
+                          navigator.clipboard.writeText(redirectUrl);
+                          toast.success('Link copied to clipboard!');
+                        }}
+                        className="ml-2 p-1.5 rounded-md hover:bg-[#3a3a3a] transition-colors"
+                        title="Copy to clipboard"
+                      >
+                        <Copy className="w-4 h-4 text-[#FFB300]" />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="text-center">
+                <button
+                  onClick={() => setIsStateRedirectOpen(false)}
+                  className="text-sm text-[#e6e6e6]/70 hover:text-[#FFB300] transition-colors font-medium"
+                >
+                  I'll complete this later
+                </button>
+                <p className="mt-2 text-xs text-[#e6e6e6]/60">
+                  Note: You must complete this step to participate in the {redirectState} qualifiers.
+                </p>
+              </div>
+            </div>
+          <DialogFooter>
+            <Button
+              type="button"
+              onClick={() => setIsStateRedirectOpen(false)}
+              className="bg-gradient-to-r from-[#FFB300] to-[#FF6A00] text-black hover:from-[#FF6A00] hover:to-[#FFB300] mr-2"
+            >
+              Complete Later
+            </Button>
+            <Button
+              type="button"
+              onClick={() => {
+                if (redirectUrl) {
+                  window.open(redirectUrl, '_blank');
+                  setIsStateRedirectOpen(false);
+                }
+              }}
+              className="bg-gradient-to-r from-[#FFB300] to-[#FF6A00] text-black hover:from-[#FF6A00] hover:to-[#FFB300]"
+            >
+              Go to {redirectState} Portal
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+    </div>
     </section>
   );
 };

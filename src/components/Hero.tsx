@@ -143,7 +143,7 @@ const Hero = () => {
               asChild
               className="w-full sm:w-auto bg-gradient-to-r from-ai-accent to-ai-primary text-white hover:from-ai-primary hover:to-ai-accent transition-all duration-300 text-base sm:text-lg px-6 sm:px-8 py-4 sm:py-6 rounded-full font-bold shadow-lg hover:shadow-2xl hover:shadow-ai-accent/25"
             >
-              <a href="RuleBook.pdf" download="CampusClashIndia_Rulebook.pdf">
+              <a href="https://drive.google.com/file/d/1Ynq1Rr_wVm5kTtyoGRPMEBemU5-zDyMS/view?usp=sharing">
                 View Rulebook
               </a>
           </Button>

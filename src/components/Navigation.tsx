@@ -13,7 +13,7 @@ const Navigation = () => {
   const isMobile = useIsMobile();
   
   const handleScroll = useCallback(() => {
-    const sections = ['hero', 'tournament', 'stages', 'colleges', 'timeline', 'rules', 'registration', 'faq'];
+    const sections = ['hero', 'tournament', 'stages', 'colleges', 'timeline', 'registration', 'faq'];
     const scrollPosition = window.scrollY;
 
     setIsScrolled(scrollPosition > 50);
@@ -117,7 +117,6 @@ const Navigation = () => {
               { id: 'stages', label: 'Stages' },
               { id: 'colleges', label: 'Colleges' },
               { id: 'timeline', label: 'Timeline' },
-              { id: 'rules', label: 'Rules' },
               { id: 'registration', label: 'Register' },
               { id: 'faq', label: 'FAQ' },
             ].map(({ id, label }) => (
@@ -161,7 +160,6 @@ const Navigation = () => {
               { id: 'stages', label: 'Stages' },
               { id: 'colleges', label: 'Colleges' },
               { id: 'timeline', label: 'Timeline' },
-              { id: 'rules', label: 'Rules' },
               { id: 'registration', label: 'Register' },
               { id: 'faq', label: 'FAQ' },
             ].map(({ id, label }) => (

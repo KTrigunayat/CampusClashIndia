@@ -8,19 +8,22 @@ PRAGMA synchronous = NORMAL;
 
 -- Table: registrations
 CREATE TABLE IF NOT EXISTS registrations (
-	id INTEGER PRIMARY KEY AUTOINCREMENT,
-	team_leader_name TEXT NOT NULL,
-	team_leader_id TEXT NOT NULL,
-	player1_id TEXT NOT NULL,
-	player2_id TEXT NOT NULL,
-	player3_id TEXT NOT NULL,
-	player4_id TEXT NOT NULL,
-	mail_id TEXT NOT NULL,
-	college_name TEXT NOT NULL,
-	whatsapp_number TEXT NOT NULL,
-	state TEXT NOT NULL,
-	created_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%d %H:%M:%f', 'now')),
-	updated_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%d %H:%M:%f', 'now'))
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  team_leader_name TEXT NOT NULL,
+  team_leader_id TEXT NOT NULL,
+  player1_id TEXT NOT NULL,
+  player2_id TEXT NOT NULL,
+  player3_id TEXT NOT NULL,
+  player4_id TEXT NOT NULL,
+  player1_contact_number TEXT,
+  player2_contact_number TEXT,
+  player3_contact_number TEXT,
+  mail_id TEXT NOT NULL,
+  college_name TEXT NOT NULL,
+  whatsapp_number TEXT NOT NULL,
+  state TEXT NOT NULL,
+  created_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now')),
+  updated_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))
 );
 
 -- Uniqueness constraints
